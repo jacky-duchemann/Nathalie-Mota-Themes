@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/scss/style.css">
 <?php
 get_header(); // Inclut l'en-tête du site
 
@@ -9,24 +10,11 @@ if (have_posts()) :
                 <h1 class="entry-title"><?php the_title(); ?></h1>
                 <div class="entry-meta">
                     <?php
-                    echo '<span class="posted-on">Publié le ' . get_the_date() . '</span>';
+                    echo '<span class="posted-on">Publié en mode le ' . get_the_date() . '</span>';
                     echo '<span class="author"> par ' . get_the_author() . '</span>';
                     ?>
                 </div>
             </header><!-- .entry-header -->
-
-            <div class="entry-content">
-                <?php
-                the_content(); // Affiche le contenu de la page
-                ?>
-            </div><!-- .entry-content -->
-
-            <footer class="entry-footer">
-                <?php
-                // Affiche les pages parentes si la page actuelle en a
-                wp_link_pages();
-                ?>
-            </footer><!-- .entry-footer -->
 
         </article><!-- #post-<?php the_ID(); ?> -->
 

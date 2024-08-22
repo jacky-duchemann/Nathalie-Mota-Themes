@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/*
+Theme Name: Nathalie-Mota-themes
+Theme URI: http://nathaliemota.local/
+Author: Jacky Duchemann
+Author URI: jackyduchemann@hotmail.fr
+Description: Thème pour le site de Nathalie Mota (Photographe)
+Version: 1.0
+Tags: Nathalie Mota, Photographe
+*/
+header {
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+}
+
+.site-header__logo img {
+  height: 14px;
+  width: 256px;
+}
+.site-header__navigation ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+.site-header__navigation ul li {
+  margin-left: 30px;
+}
+.site-header__navigation ul li a {
+  text-decoration: none;
+  font-family: Space Mono;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+}/*# sourceMappingURL=style.css.map */

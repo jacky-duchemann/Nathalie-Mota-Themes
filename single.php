@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/scss/style.css">
 <?php
 get_header(); // Inclut l'en-tête du site
 
@@ -19,27 +20,6 @@ if (have_posts()) :
                     ?>
                 </div>
             </header><!-- .entry-header -->
-
-            <div class="entry-content">
-                <?php
-                the_content(); // Affiche le contenu de l'article
-                ?>
-            </div><!-- .entry-content -->
-
-            <footer class="entry-footer">
-                <?php
-                // Affiche les catégories et les étiquettes
-                the_category(', ');
-                the_tags();
-                ?>
-            </footer><!-- .entry-footer -->
-
-            <?php
-            // Affiche les commentaires s'ils sont ouverts ou s'il y a des commentaires
-            if (comments_open() || get_comments_number()) :
-                comments_template();
-            endif;
-            ?>
 
         </article><!-- #post-<?php the_ID(); ?> -->
 
