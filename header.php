@@ -2,7 +2,10 @@
 <header class="site-header">
 
 <div class="site-header__logo">
-    <a href="http://nathaliemota.local/"><img src="wp-content/themes/Nathalie-Mota-themes/assets/images/logo.png" alt="Logo du site Nathalie Mota" /></a>
+    <!-- <a href="http://nathaliemota.local/"><img src="wp-content/themes/Nathalie-Mota-themes/assets/images/logo.png" alt="Logo du site Nathalie Mota" /></a> -->
+    <a href="<?php echo esc_url(home_url('/')); ?>">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Logo du site Nathalie Mota" />
+    </a>
 </div>
 
 <nav class="site-header__navigation" role="navigation" aria-label="<?php _e('Menu principal', 'text-domain'); ?>">
