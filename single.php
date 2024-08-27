@@ -28,6 +28,6 @@ else :
     echo '<p>Aucun article trouvé.</p>';
 endif;
 
-get_sidebar(); // Inclut la barre latérale du site
+
 get_footer(); // Inclut le pied de page du site
 ?>

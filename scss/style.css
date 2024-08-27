@@ -12,6 +12,10 @@ Tags: Nathalie Mota, Photographe
   font-family: "SpaceMono";
   src: url("../fonts/SpaceMono-Regular.woff") format("woff");
 }
+* {
+  font-family: "SpaceMono", sans-serif;
+}
+
 header {
   display: flex;
   margin-top: 5px;

@@ -13,6 +13,9 @@ Tags: Nathalie Mota, Photographe
 }
 
 $theme-font: 'SpaceMono', sans-serif;
+* {
+    font-family: $theme-font;
+}
 
 header {
     display: flex;
