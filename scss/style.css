@@ -8,11 +8,17 @@ Description: Thème pour le site de Nathalie Mota (Photographe)
 Version: 1.0
 Tags: Nathalie Mota, Photographe
 */
+@font-face {
+  font-family: "SpaceMono";
+  src: url("../fonts/SpaceMono-Regular.woff") format("woff");
+}
 header {
   display: flex;
   margin-top: 5px;
   align-items: center;
   justify-content: space-between;
+  width: 1080px;
+  margin: auto;
 }
 
 .site-header__logo img {
@@ -29,7 +35,27 @@ header {
 }
 .site-header__navigation ul li a {
   text-decoration: none;
-  font-family: Space Mono;
+  font-family: "SpaceMono", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+}
+
+.site-footer {
+  display: flex;
+  flex-direction: row;
+}
+.site-footer ul {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  margin: auto;
+  list-style: none;
+}
+.site-footer ul li a {
+  text-decoration: none;
+  color: black;
+  font-family: "SpaceMono", sans-serif;
   font-weight: 400;
   font-size: 16px;
 }/*# sourceMappingURL=style.css.map */

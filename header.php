@@ -2,7 +2,7 @@
 <header class="site-header">
 
 <div class="site-header__logo">
-    <!-- <a href="http://nathaliemota.local/"><img src="wp-content/themes/Nathalie-Mota-themes/assets/images/logo.png" alt="Logo du site Nathalie Mota" /></a> -->
+    
     <a href="<?php echo esc_url(home_url('/')); ?>">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Logo du site Nathalie Mota" />
     </a>

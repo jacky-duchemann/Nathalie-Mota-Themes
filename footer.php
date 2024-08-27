@@ -1,1 +1,7 @@
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/scss/style.css">
+<footer class="site-footer">
+    <ul class="footer-links">
+      <li><a href="#accueil">MENTIONS LÉGALES</a></li>
+      <li><a href="#a-propos">VIE PRIVÉE</a></li>
+      <li><a href="#contact">TOUS DROITS RÉSERVÉS</a></li>
+    </ul>
+</footer>

@@ -7,7 +7,7 @@
 }
 add_action('wp_enqueue_scripts', 'mon_theme_enqueue_styles');*/
 function mon_theme_styles() {
-    wp_enqueue_style('style-personnalise', get_template_directory_uri() . 'scss/style.css');
+    wp_enqueue_style('style-personnalise', get_template_directory_uri() . '/scss/style.css');
 }
 add_action('wp_enqueue_scripts', 'mon_theme_styles');
 ?>
