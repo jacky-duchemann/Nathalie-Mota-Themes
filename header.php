@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/scss/style.css">
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/scss/style.css"> 
 <header class="site-header">
 
 <div class="site-header__logo">

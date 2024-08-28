@@ -55,6 +55,7 @@ header {
 .site-footer {
     display: flex;
     flex-direction: row;
+    margin-top: 60px;
         ul {
             display: flex;
             flex-direction: row;
@@ -73,3 +74,30 @@ header {
         }
 }
 
+.photo-content {
+    //margin: auto;
+    //align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1080px;
+    margin-bottom: 25px;
+        &__info {
+            margin: auto;
+            //align-items: center;
+        }
+}
+
+.contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__button {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 15px;
+        //margin: auto;
+        width: 1080px;
+    }
+}

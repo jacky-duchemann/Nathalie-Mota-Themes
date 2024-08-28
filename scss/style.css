@@ -48,6 +48,7 @@ header {
 .site-footer {
   display: flex;
   flex-direction: row;
+  margin-top: 60px;
 }
 .site-footer ul {
   display: flex;
@@ -62,4 +63,28 @@ header {
   font-family: "SpaceMono", sans-serif;
   font-weight: 400;
   font-size: 16px;
+}
+
+.photo-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1080px;
+  margin-bottom: 25px;
+}
+.photo-content__info {
+  margin: auto;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.contact__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 15px;
+  width: 1080px;
 }/*# sourceMappingURL=style.css.map */

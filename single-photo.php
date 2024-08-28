@@ -15,7 +15,7 @@ if (have_posts()) :
                 $reference_photo = get_post_meta(get_the_ID(), 'reference', true);
             ?>
             <?php
-                $categorie_photo = get_the_terms(get_the_ID(), 'categorie'); // Remplacez 'votre_taxonomie' par le slug de votre taxonomie
+                $categorie_photo = get_the_terms(get_the_ID(), 'categorie'); 
                 $format_photo = get_the_terms(get_the_ID(), 'format');
                 $annee_photo = get_the_terms(get_the_ID(), 'annee');
 
@@ -46,11 +46,12 @@ if (have_posts()) :
             <div class="contact__button">
                 <p> Cette photo vous intéresse? </p>
                 <button id="contact-button">Contact</button>
+                <div class="photo-navigation">
+                <?php previous_post_link('%link', 'Previous Photo'); ?>
+                <?php next_post_link('%link', 'Next Photo'); ?>
+                </div>
             </div>        
-            <div class="photo-navigation">
-            <?php previous_post_link('%link', 'Previous Photo'); ?>
-            <?php next_post_link('%link', 'Next Photo'); ?>
-            </div>
+            
         </div>
         
         <!-- Popup de Contact -->
