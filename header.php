@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/scss/style.css"> 
 <header class="site-header">
 
 <div class="site-header__logo">
@@ -20,4 +19,5 @@ wp_nav_menu([
 ]);
 ?>
 </nav>
+<?php wp_head() ?> <!-- Pour permettre le enqueue du style -->
 </header>
