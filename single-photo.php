@@ -62,8 +62,51 @@ if (have_posts()) :
             <button type="submit">Envoyer</button>
           </form>
         </div>
-    <?php endwhile;
+
+        <h2>VOUS AIMEREZ AUSSI</h2>
+        <?php
+            // Récupérer les catégories de la photo actuelle
+            $categories = wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'ids'));
+
+            // Query pour récupérer les photos dans les mêmes catégories
+            $related_args = array(
+                'post_type'      => 'photo', 
+                'posts_per_page' => 2, 
+                'post__not_in'   => array(get_the_ID()), // Exclure la photo actuelle
+                'tax_query'      => array(
+                    array(
+                        'taxonomy' => 'categorie',
+                        'field'    => 'term_id',
+                        'terms'    => $categories,
+                        'operator' => 'IN',
+                    ),
+                ),
+            );
+
+            $related_query = new WP_Query($related_args);
+            if ($related_query->have_posts()) : ?>
+                <div class="related-photos">
+                    <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
+                        <div class="related-photos__thumbnail">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <a href="<?php the_permalink(); ?>" class="related-photo-link">
+                                    <?php the_post_thumbnail('thumbnail'); ?>
+                                    <div class="overlay">
+                                        <span class="icon-eye">&#128065;</span> <!-- Icône œil -->
+                                        <span class="icon-fullscreen">&#x26F6;</span> <!-- Icône plein écran -->
+                                    </div>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            <?php endif;
+            wp_reset_postdata();
+            ?>
+        
+<?php endwhile;
   endif;
+ 
 
 
 get_footer(); 
