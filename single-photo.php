@@ -2,7 +2,7 @@
 /* Template Name: Single Photo */
 ?>
 <?php
-get_header(); // Inclut l'en-tête du site
+get_header(); 
 
 if (have_posts()) :
     while (have_posts()) : the_post(); ?>
@@ -40,34 +40,31 @@ if (have_posts()) :
             <?php endif; ?>
             <?php endif; ?>
         </div>
-        <div class="photo-content__image"><?php the_post_thumbnail('medium'); ?></div>
-        </div>  
-        <div class="contact">
+    
+        <div class="photo-content__image"><?php the_post_thumbnail('full'); ?></div>
+        </div> 
+      </div>
+      <div class="contact">
             <div class="contact__button">
                 <p> Cette photo vous intéresse? </p>
                 <button id="contact-button">Contact</button>
                 <div class="photo-navigation">
-                <?php previous_post_link('%link', 'Previous Photo'); ?>
-                <?php next_post_link('%link', 'Next Photo'); ?>
-                </div>
-            </div>        
-            
-        </div>
-        
+                    <?php previous_post_link('%link', '&larr;'); ?>
+                    <?php next_post_link('%link', '&rArr;'); ?>
+                </div>       
+            </div>
+      </div>  
         <!-- Popup de Contact -->
-        <div id="contact-popup" style="display:none;">
+        <div id="contact-popup" class="contact__popup" style="display:none;">
           <form>
             <label for="popup-refer-photo">RÉF. PHOTO:</label>
             <input type="text" id="popup-refer-photo" name="refer-photo">
             <button type="submit">Envoyer</button>
           </form>
         </div>
-        
-      </div>
-  
     <?php endwhile;
   endif;
 
 
-get_footer(); // Inclut le pied de page du site
+get_footer(); 
 ?>

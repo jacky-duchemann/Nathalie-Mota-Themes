@@ -17,16 +17,12 @@ $theme-font: 'SpaceMono', sans-serif;
     font-family: $theme-font;
 }
 
-header {
+.site-header {
     display: flex;
-    margin-top: 5px;
     align-items: center;
     justify-content: space-between; 
-    width: 1080px;
+    max-width: 80vw;
     margin: auto;
-}
-
-.site-header {
         &__logo {
             img {
                 height: 14px;
@@ -55,7 +51,10 @@ header {
 .site-footer {
     display: flex;
     flex-direction: row;
-    margin-top: 60px;
+    max-width: 100vw;
+    margin: auto;
+    border-top: 1px solid black;
+    padding-top: 5px;
         ul {
             display: flex;
             flex-direction: row;
@@ -75,29 +74,46 @@ header {
 }
 
 .photo-content {
-    //margin: auto;
-    //align-items: center;
     display: flex;
+    margin: auto;
     flex-direction: row;
     justify-content: space-between;
-    width: 1080px;
-    margin-bottom: 25px;
+    max-width: 80vw;
+    margin-bottom: 35px;
+    margin-top: 25px;
         &__info {
             margin: auto;
-            //align-items: center;
+            width: 50vw;
+            border-bottom: 1px solid black;
+                h1 {
+                    margin-top: 80vh;
+                }
+        }
+        &__image {
+            img {
+                width: 35vw;
+                height: 120vh;
+            }
         }
 }
 
 .contact {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    &__button {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 15px;
-        //margin: auto;
-        width: 1080px;
-    }
+    align-items: center;
+    max-width: 80vw;
+    margin: auto;
+    margin-bottom: 10vh;
+    border-bottom: 1px solid black;
+    padding-bottom: 5vh;
+        &__button {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: auto;
+                button {
+                    margin-right: 420px;
+                    width: 272px;
+                    height: 50px;
+                }
+
+        }
 }
