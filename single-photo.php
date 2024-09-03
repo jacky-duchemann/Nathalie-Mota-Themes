@@ -9,7 +9,7 @@ if (have_posts()) :
   
       <div class="photo-content">
         <div class="photo-content__info">
-            <h1><?php the_title(); ?></h1>
+            <h1><i><?php the_title(); ?></i></h1>
             <?php
                 $type_photo = get_post_meta(get_the_ID(), 'type', true);
                 $reference_photo = get_post_meta(get_the_ID(), 'reference', true);
@@ -54,6 +54,7 @@ if (have_posts()) :
                 </div>       
             </div>
       </div>  
+      
         <!-- Popup de Contact -->
         <div id="contact-popup" class="contact__popup" style="display:none;">
           <form>
@@ -85,29 +86,12 @@ if (have_posts()) :
 
             $related_query = new WP_Query($related_args);
             if ($related_query->have_posts()) : ?>
-                <div class="related-photos">
-                    <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
-                        <div class="related-photos__thumbnail">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <a href="<?php the_permalink(); ?>" class="related-photo-link">
-                                    <?php the_post_thumbnail('thumbnail'); ?>
-                                    <div class="overlay">
-                                        <span class="icon-eye">&#128065;</span> <!-- Icône œil -->
-                                        <span class="icon-fullscreen">&#x26F6;</span> <!-- Icône plein écran -->
-                                    </div>
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    <?php endwhile; ?>
-                </div>
+            <?php include 'templates_parts/photo-block.php'; ?>
             <?php endif;
             wp_reset_postdata();
             ?>
         
 <?php endwhile;
   endif;
- 
-
-
-get_footer(); 
+ get_footer(); 
 ?>
