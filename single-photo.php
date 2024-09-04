@@ -53,16 +53,7 @@ if (have_posts()) :
                     <?php next_post_link('%link', '&rArr;'); ?>
                 </div>       
             </div>
-      </div>  
-      
-        <!-- Popup de Contact -->
-        <div id="contact-popup" class="contact__popup" style="display:none;">
-          <form>
-            <label for="popup-refer-photo">RÉF. PHOTO:</label>
-            <input type="text" id="popup-refer-photo" name="refer-photo">
-            <button type="submit">Envoyer</button>
-          </form>
-        </div>
+      </div> 
 
         <h2>VOUS AIMEREZ AUSSI</h2>
         <?php

@@ -16,6 +16,17 @@ Tags: Nathalie Mota, Photographe
   font-family: "Poppins";
   src: url("../fonts/Poppins-Regular.woff") format("woff");
 }
+/*  Animation  */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
 * {
   font-family: "SpaceMono", sans-serif;
 }
@@ -97,6 +108,7 @@ Tags: Nathalie Mota, Photographe
 }
 .photo-content__info {
   margin: auto;
+  margin-bottom: 0;
   width: 50%;
   height: 100%;
   border-bottom: 1px solid black;
@@ -188,21 +200,24 @@ h2 {
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
-  margin: auto;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  display: none;
+  position: fixed;
+  z-index: 1000; /* Assure que la modale est au-dessus des autres éléments */
+  left: 50%; /* Positionnement horizontal au centre */
+  top: 5%; /* Positionnement vertical en haut avec une marge de 10% */
+  transform: translateX(-50%); /* Centre la modale horizontalement */
+  width: 80%;
+  max-width: 400px;
+  overflow: hidden;
 }
 .modal__content {
+  display: flex; /* Utilisation de flexbox */
+  flex-direction: column; /* Aligne le contenu en colonne */
+  align-items: center; /* Centre horizontalement le contenu */
+  justify-content: center; /* Centre verticalement le contenu */
+  text-align: center; /* Centre le texte */
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  max-width: 80vw;
+  border: 2px solid black;
 }
 .modal__content .close {
   color: #aaa;
@@ -211,7 +226,7 @@ h2 {
   font-weight: bold;
 }
 .modal__content .close:hover {
-  color: black;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
@@ -221,5 +236,5 @@ h2 {
   cursor: pointer;
 }
 .modal__content img {
-  width: 50vw;
+  width: 25vw;
 }/*# sourceMappingURL=style.css.map */
