@@ -13,6 +13,27 @@ $hero_image = get_random_hero_image();
         <h1><i>PHOTOGRAPHE EVENT</i></h1>
     </div>
 </header>
+
+<form id="photo-filters" class="filters">
+    <?php taxonomy_filters(); ?>
+    <!-- <div>
+    <select id="format-filter" class="filters__formats filters__all" name="format">
+        <option value="">FORMATS</option>
+        
+    </select>
+
+    <select id="categorie-filter" class="filters__categories filters__all" name="categorie">
+        <option value="">CATÉGORIES</option>
+        
+    </select> -->
+    </div>
+    <select id="sort-order" class="filters__orderby filters__all" name="order">
+        <option value="ASC" disabled selected hidden>TRIER PAR</option> 
+        <option value=""> + RÉCENTES </option>
+        <option value=""> - RÉCENTES </option>
+        
+    </select>
+</form>
 <?php
 // Query pour récupérer les photos dans les mêmes catégories
             $related_args = array(

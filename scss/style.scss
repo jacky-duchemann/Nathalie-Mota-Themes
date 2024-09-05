@@ -66,6 +66,7 @@ $second-font: 'Poppins', sans-serif;
         }
 }
 
+//index.php
 .hero-header {
     background-size: cover;
     background-position: center;
@@ -74,7 +75,7 @@ $second-font: 'Poppins', sans-serif;
     max-width: 80vw;
     margin: auto;
     align-items: center;
-    margin-bottom: 25vh;
+    margin-bottom: 15vh;
         &__content {
             justify-content: center;
             align-items: center;
@@ -86,6 +87,30 @@ $second-font: 'Poppins', sans-serif;
                     color: transparent;
                     -webkit-text-stroke: 1px white; // couleur et epaisseur du contour des lettres
                     opacity: 50%;
+                }
+        }
+}
+
+.filters {
+    display: flex;
+    max-width: 70vw;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+        &__all {
+            width: 260px;
+            height: 43px;
+            border-radius: 8px;
+            border: 1,3px;
+            padding: 11px 18px 11px 18px;
+            font-family: $second-font;
+            font-weight: 500;
+            font-size: 12px; 
+                option {
+                    &:hover {
+                        background-color: red;
+                        color: white; 
+                    }  
                 }
         }
 }
@@ -103,6 +128,7 @@ $second-font: 'Poppins', sans-serif;
             }
 }
 
+// Single-photo.php
 .photo-content {
     display: flex;
     margin: auto;
@@ -139,7 +165,7 @@ $second-font: 'Poppins', sans-serif;
     max-width: 80vw;
     height: 118px;
     margin: auto;
-    margin-bottom: 5vh;
+    margin-bottom: 15vh;
     border-bottom: 1px solid black;
         &__button {
             display: flex;
@@ -147,9 +173,23 @@ $second-font: 'Poppins', sans-serif;
             justify-content: space-between;
             margin: auto;
                 button {
-                    margin-right: 420px;
+                    margin-right: 500px;
                     width: 272px;
                     height: 50px;
+                    font-size: 14px;
+                    font-weight: 400;
+                    background-color: #D8D8D8;
+                    border-radius: 2px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+                        &:hover {
+                            background-color: #FE5858; 
+                            color: #313144;
+                            transform: scale(1.1); /* Agrandit légèrement le bouton */
+                        }
+                        &:active {
+                            transform: scale(0.9); /* Réduit légèrement la taille du bouton lorsqu'il est pressé */
+                        }
                 }
                 p {
                     font-family: $second-font;
@@ -169,7 +209,7 @@ h2 {
     justify-content: space-between;
     max-width: 80vw;
     margin-bottom: 45px;
-    margin-top: 25px;
+    margin-top: 10vh;
     overflow: hidden;
     gap: 10px;
         &__thumbnail {
@@ -182,32 +222,8 @@ h2 {
         }
 }
 
-.site-footer {
-    display: flex;
-    flex-direction: row;
-    max-width: 100vw;
-    margin: auto;
-    border-top: 1px solid black;
-    padding-top: 5px;
-        ul {
-            display: flex;
-            flex-direction: row;
-            gap: 60px;
-            margin: auto;
-            list-style: none;
-                li {
-                   a {
-                    text-decoration: none;
-                    color: black;
-                    font-family: $theme-font;
-                    font-weight: 400;
-                    font-size: 16px;
-                   }
-                }
-        }
-}
-
 // Modale de contact
+
 .modal {
     display: none; 
     position: fixed; 
@@ -244,6 +260,31 @@ h2 {
                 }
                 img {
                     width: 25vw;
+                }
+        }
+}
+
+.site-footer {
+    display: flex;
+    flex-direction: row;
+    max-width: 100vw;
+    margin: auto;
+    border-top: 1px solid black;
+    padding-top: 5px;
+        ul {
+            display: flex;
+            flex-direction: row;
+            gap: 60px;
+            margin: auto;
+            list-style: none;
+                li {
+                   a {
+                    text-decoration: none;
+                    color: black;
+                    font-family: $theme-font;
+                    font-weight: 400;
+                    font-size: 16px;
+                   }
                 }
         }
 }
