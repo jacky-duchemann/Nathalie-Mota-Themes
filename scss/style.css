@@ -57,6 +57,9 @@ Tags: Nathalie Mota, Photographe
   font-size: 16px;
   color: black;
 }
+.site-header__navigation ul li a:hover {
+  font-weight: 700;
+}
 
 .hero-header {
   background-size: cover;
@@ -171,12 +174,13 @@ Tags: Nathalie Mota, Photographe
   background-color: #D8D8D8;
   border-radius: 2px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  transition: background-color 1.2s ease, transform 0.6s ease, color 0.8s ease, font-weight 0.8s ease-in-out;
 }
 .contact__button button:hover {
-  background-color: #FE5858;
-  color: #313144;
+  background-color: black;
+  color: white;
   transform: scale(1.1); /* Agrandit légèrement le bouton */
+  font-weight: bolder;
 }
 .contact__button button:active {
   transform: scale(0.9); /* Réduit légèrement la taille du bouton lorsqu'il est pressé */
@@ -196,7 +200,7 @@ h2 {
   display: flex;
   margin: auto;
   justify-content: space-between;
-  max-width: 80vw;
+  max-width: 70vw;
   margin-bottom: 45px;
   margin-top: 10vh;
   overflow: hidden;
@@ -204,6 +208,7 @@ h2 {
 }
 .related-photos__thumbnail {
   width: 50%;
+  position: relative;
 }
 .related-photos__thumbnail img {
   width: 100%;
@@ -211,26 +216,90 @@ h2 {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.related-photos__thumbnail__link__overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour mieux voir les icônes */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+  height: 100%;
+}
+.related-photos__thumbnail__link__overlay:hover {
+  opacity: 1;
+}
+.related-photos__thumbnail__link__overlay .icon-eye {
+  position: absolute;
+  top: -2vh;
+  left: 16vw;
+  width: 2vw;
+  height: 6vh;
+}
+.related-photos__thumbnail__link__overlay .icon-eye img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.related-photos__thumbnail__link__overlay .icon-eye:hover ~ .info-box {
+  opacity: 1;
+}
+.related-photos__thumbnail__link__overlay .icon-fullscreen {
+  position: absolute;
+  top: -20vh;
+  right: 10px;
+  z-index: 2;
+  width: 2vw;
+  height: 6vh;
+  cursor: pointer;
+}
+.related-photos__thumbnail__link__overlay .icon-fullscreen img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.related-photos__thumbnail__link__overlay .info-box {
+  display: flex;
+  opacity: 0; /* Masquer par défaut on voit les infos au passage de la souris sur l'oeil */
+  flex-direction: row;
+  position: absolute;
+  bottom: 0%;
+  justify-content: space-between;
+  gap: 20vw;
+}
+.related-photos__thumbnail__link__overlay .info-box p {
+  color: white;
+}
 
 .modal {
   display: none;
   position: fixed;
+  top: 6%;
+  left: 50%;
   z-index: 1000; /* Assure que la modale est au-dessus des autres éléments */
-  left: 50%; /* Positionnement horizontal au centre */
-  top: 5%; /* Positionnement vertical en haut avec une marge de 10% */
   transform: translateX(-50%); /* Centre la modale horizontalement */
-  width: 80%;
-  max-width: 400px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  margin: 0 auto;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  justify-content: center;
+  align-items: center;
 }
 .modal__content {
-  display: flex; /* Utilisation de flexbox */
-  flex-direction: column; /* Aligne le contenu en colonne */
-  align-items: center; /* Centre horizontalement le contenu */
-  justify-content: center; /* Centre verticalement le contenu */
-  text-align: center; /* Centre le texte */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #fefefe;
   border: 2px solid black;
+  font-size: 12px;
+  max-width: 50vw;
+  margin: auto;
 }
 .modal__content .close {
   color: #aaa;
@@ -249,7 +318,47 @@ h2 {
   cursor: pointer;
 }
 .modal__content img {
-  width: 25vw;
+  width: 50vw;
+  height: 15vh;
+}
+.modal__content .wpcf7 {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+.modal__content .wpcf7 span input {
+  width: 263px;
+  height: 40px;
+  border: 1px solid #B8BBC2;
+  border-radius: 8px;
+}
+.modal__content .wpcf7 span textarea {
+  width: 263px;
+  height: 20vh;
+  border: 1px solid #B8BBC2;
+  border-radius: 8px;
+}
+.modal__content .wpcf7 .wpcf7-submit {
+  display: block;
+  width: 263px;
+  height: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 400;
+  background-color: #D8D8D8;
+  margin: 0 auto;
+  align-self: center;
+  transition: background-color 1.2s ease, transform 0.6s ease, color 0.8s ease, font-weight 0.8s ease-in-out;
+}
+.modal__content .wpcf7 .wpcf7-submit:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.1); /* Agrandit légèrement le bouton */
+  font-weight: bolder;
+}
+.modal__content .wpcf7 .wpcf7-submit:active {
+  transform: scale(0.9); /* Réduit légèrement la taille du bouton lorsqu'il est pressé */
 }
 
 .site-footer {

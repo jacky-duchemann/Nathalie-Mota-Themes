@@ -16,16 +16,7 @@ $hero_image = get_random_hero_image();
 
 <form id="photo-filters" class="filters">
     <?php taxonomy_filters(); ?>
-    <!-- <div>
-    <select id="format-filter" class="filters__formats filters__all" name="format">
-        <option value="">FORMATS</option>
-        
-    </select>
-
-    <select id="categorie-filter" class="filters__categories filters__all" name="categorie">
-        <option value="">CATÉGORIES</option>
-        
-    </select> -->
+    <!-- filtres formats et catégories s'affichent ici -->
     </div>
     <select id="sort-order" class="filters__orderby filters__all" name="order">
         <option value="ASC" disabled selected hidden>TRIER PAR</option> 

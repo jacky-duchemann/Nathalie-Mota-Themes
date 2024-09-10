@@ -40,10 +40,12 @@ if (have_posts()) :
             <?php endif; ?>
             <?php endif; ?>
         </div>
-    
+        
         <div class="photo-content__image"><?php the_post_thumbnail('full'); ?></div>
         </div> 
       </div>
+      <!-- Élément HTML pour stocker la référence (remplissage auto du champ référence du formulaire)-->
+      <div id="photoReference" data-reference="<?php echo esc_attr($reference_photo); ?>" style="display:none;"></div>
       <div class="contact">
             <div class="contact__button">
                 <p> Cette photo vous intéresse? </p>
