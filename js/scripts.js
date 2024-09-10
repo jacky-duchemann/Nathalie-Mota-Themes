@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(photoReference);
         modal.style.display = "block";
         console.log("Bouton contatc cliqué");
-    })
+    });
 
     window.onclick = function(event) {
         if (event.target === modal) {
