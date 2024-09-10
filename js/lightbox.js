@@ -1,10 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const filter = document.querySelector('.filters__orderby');
+const close = document.querySelector('.lightbox__close');
+const lightbox = document.querySelector('.lightbox');
+const openLightBox = document.querySelectorAll('.icon-fullscreen');
 
-    filter.addEventListener('click', function() {
-        console.log("Eh ben ça fonctionne !")
+    // ouverture de la lightbox
+    openLightBox.addEventListener('click', function(event) {
+        lightbox.style.display = "block";
+        event.preventDefault();
     })
-
+    // fermeture de la lightbox
+    close.addEventListener('click', function() {
+        lightbox.style.display = "none";
+    })
 });
-
 

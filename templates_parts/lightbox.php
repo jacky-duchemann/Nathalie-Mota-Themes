@@ -1,8 +1,9 @@
+<?php ?>
 <div class="lightbox">
-  <button class="lightbox__close">Fermer</button>
-  <button class="lightbox__next">Suivant</button>
-  <button class="lightbox__prev">Précédent</button>
+  <div class="lightbox__close">X</div>
+  <div class="lightbox__next">Suivante &#10230;</div>
+  <div class="lightbox__prev">&#10229; Précédente</div>
   <div class="lightbox__container">
-    <img id="lightbox-img">
+    <img src="https://picsum.photos/300/600" alt="">
   </div>
 </div>

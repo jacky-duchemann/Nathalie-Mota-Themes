@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     var photoFilters = document.getElementById('photo-filters');
     var formatFilter = document.getElementById('format-filter');
     var categorieFilter = document.getElementById('categorie-filter');
@@ -24,4 +24,4 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
         });
     });
-});
+});*/

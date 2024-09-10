@@ -3,10 +3,9 @@
                         <div class="related-photos__thumbnail">
                             <?php if (has_post_thumbnail()) : ?>
                                 <a href="<?php the_permalink(); ?>" class="related-photos__thumbnail__link">
-                                    <?php the_post_thumbnail('full'); ?>
+                                    <?php the_post_thumbnail('full'); ?> 
                                     <div class="related-photos__thumbnail__link__overlay">
-                                        <span class="icon-eye icon-eye-related"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-eye.png" alt="Icone Oeil" /></span> <!-- Icône œil -->
-                                        <span class="icon-fullscreen"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-fullscreen.png" alt="Icone Plein écran" /></span> <!-- Icône plein écran -->
+                                        <span class="icon-eye icon-eye-related"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-eye.png" alt="Icone Oeil" /></span> <!-- Icône œil --> 
                                         <div class="info-box">
                                             <p><?php the_field('reference'); ?></p>
                                             <?php
@@ -19,9 +18,11 @@
                                                 echo '<p>Aucune catégorie trouvée</p>';
                                             }
                                             ?> 
-                                        </div>
+                                        </div> 
+                                        <span class="icon-fullscreen"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-fullscreen.png" alt="Icone Plein écran" /></span>  <!-- Icône plein écran -->
                                     </div>
-                                </a>
+                                    </a>
+                                
                             <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
