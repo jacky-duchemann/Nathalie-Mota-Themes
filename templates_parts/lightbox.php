@@ -1,4 +1,3 @@
-<?php ?>
 <div class="lightbox">
   <div class="lightbox__close">X</div>
   <div class="lightbox__next">Suivante &#10230;</div>

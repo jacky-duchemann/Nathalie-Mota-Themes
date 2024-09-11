@@ -110,9 +110,9 @@ $second-font: 'Poppins', sans-serif;
             font-weight: 500;
             font-size: 12px; 
                 option {
-                    &:hover {
-                        background-color: red;
-                        color: white; 
+                    &:checked {
+                        background-color: red !important;
+                        color: white !important; 
                     }  
                 }
         }
@@ -259,7 +259,7 @@ h2 {
                             position: absolute;
                             top: -20vh;
                             right: 10px;
-                            z-index: 2;
+                            z-index: 400;
                             width: 2vw;
                             height: 6vh;
                             cursor: pointer;

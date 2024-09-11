@@ -72,7 +72,7 @@ function taxonomy_filters() {
 } // remplissage dynamique des filtres Categories et format
 ?>
 
-<?php 
+<?php /*
 function ajax_filter_photos() {
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $categorie = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
@@ -111,5 +111,5 @@ function ajax_filter_photos() {
 }
 
 add_action('wp_ajax_filter_photos', 'ajax_filter_photos');
-add_action('wp_ajax_nopriv_filter_photos', 'ajax_filter_photos');
+add_action('wp_ajax_nopriv_filter_photos', 'ajax_filter_photos');*/
 ?>
