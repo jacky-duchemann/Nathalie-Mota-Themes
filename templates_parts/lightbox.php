@@ -3,6 +3,10 @@
   <div class="lightbox__next">Suivante &#10230;</div>
   <div class="lightbox__prev">&#10229; Précédente</div>
   <div class="lightbox__container">
-    <img src="https://picsum.photos/300/600" alt="">
+    <img src="" alt="">
+    <div class="lightbox__container__info">
+      <p class="lightbox__container__info__reference"></p> 
+      <p class="lightbox__container__info__categorie"></p> 
+    </div>
   </div>
 </div>

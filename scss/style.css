@@ -102,9 +102,9 @@ Tags: Nathalie Mota, Photographe
   font-weight: 500;
   font-size: 12px;
 }
-.filters__all option:hover {
-  background-color: red;
-  color: white;
+.filters__all option:checked {
+  background-color: red !important;
+  color: white !important;
 }
 
 .grid-photo {
@@ -251,7 +251,7 @@ h2 {
   position: absolute;
   top: -20vh;
   right: 10px;
-  z-index: 2;
+  z-index: 400;
   width: 2vw;
   height: 6vh;
   cursor: pointer;
@@ -397,10 +397,17 @@ h2 {
 }
 .lightbox__container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  margin: 0 50px;
+  margin: 0 auto;
+}
+.lightbox__container__info {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  gap: 40vw;
 }
 .lightbox__close {
   position: absolute;

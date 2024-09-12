@@ -417,10 +417,17 @@ h2 {
         background-color: rgba(0, 0, 0, 0.8);
             &__container {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 min-height: 100vh;
-                margin: 0 50px; 
+                margin: 0 auto; 
+                    &__info {
+                        display: flex;
+                        flex-direction: row;
+                        color: white;
+                        gap: 40vw;
+                    }
             }
             &__close {
                 position: absolute;
