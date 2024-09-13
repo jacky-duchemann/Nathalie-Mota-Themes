@@ -8,6 +8,22 @@ Description: Thème pour le site de Nathalie Mota (Photographe)
 Version: 1.0
 Tags: Nathalie Mota, Photographe
 */
+/**
+Mixins pour le responsive du site 
+*/
+/*$mobile: 767px;
+$tablet: 1024px;
+$desktop: 1200px;
+
+@mixin responsive($breakpoint) {
+    @if $breakpoint == mobile {
+      @media (max-width: $mobile) { @content; }
+    } @else if $breakpoint == tablet {
+      @media (max-width: $tablet) { @content; }
+    } @else if $breakpoint == desktop {
+      @media (min-width: desktop) { @content; }
+    }
+  }*/
 @font-face {
   font-family: "SpaceMono";
   src: url("../fonts/SpaceMono-Regular.woff") format("woff");
@@ -41,6 +57,12 @@ Tags: Nathalie Mota, Photographe
 .site-header__logo img {
   height: 14px;
   width: 256px;
+}
+@media (max-width: 760px) {
+  .site-header__logo img {
+    height: 6px;
+    width: 120px;
+  }
 }
 .site-header__navigation ul {
   display: flex;
@@ -118,6 +140,31 @@ Tags: Nathalie Mota, Photographe
 }
 .grid-photo .related-photos__thumbnail {
   flex: 1 1 calc(50% - 20px); /* Deux colonnes avec un écart de 20px */
+}
+
+.btn-load {
+  display: flex;
+  margin: 0 auto;
+  max-width: 70vw;
+  justify-content: center;
+  align-items: center;
+}
+.btn-load button {
+  margin-bottom: 10vh;
+  width: 20vw;
+  height: 10vh;
+  font-size: 12px;
+  padding: 8px 15px 8px 15px;
+  border-radius: 2px;
+  background-color: #D8D8D8;
+  cursor: pointer;
+  transition: background-color 1.2s ease, transform 0.6s ease, color 0.8s ease, font-weight 0.8s ease;
+}
+.btn-load button:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.1); /* Agrandit légèrement le bouton */
+  font-weight: bolder;
 }
 
 .photo-content {
@@ -299,6 +346,7 @@ h2 {
   border: 2px solid black;
   font-size: 12px;
   max-width: 50vw;
+  box-sizing: border-box;
   margin: auto;
 }
 .modal__content .close {
@@ -326,6 +374,10 @@ h2 {
   margin: 0 auto;
   align-items: center;
   justify-content: center;
+}
+.modal__content .wpcf7 form {
+  width: 100%;
+  box-sizing: border-box;
 }
 .modal__content .wpcf7 span input {
   width: 263px;
@@ -361,6 +413,7 @@ h2 {
   transform: scale(0.9); /* Réduit légèrement la taille du bouton lorsqu'il est pressé */
 }
 
+/********************/
 .site-footer {
   display: flex;
   flex-direction: row;

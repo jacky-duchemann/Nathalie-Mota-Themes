@@ -1,3 +1,6 @@
+<head>
+    <!-- <meta name="viewport" content="width=device-width, initial-sale=1"> -->
+</head>
 <header class="site-header">
 
 <div class="site-header__logo">

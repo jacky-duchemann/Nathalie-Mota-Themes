@@ -11,12 +11,6 @@ function mytheme_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'mytheme_enqueue_styles');
 
-function enqueue_filter_scripts() {
-    wp_enqueue_script('ajax-filter', get_template_directory_uri() . '/js/ajax-filter.js', array('jquery'), null, true);
-    wp_localize_script('ajax-filter', 'ajaxurl', admin_url('admin-ajax.php'));
-}
-
-add_action('wp_enqueue_scripts', 'enqueue_filter_scripts');
 ?>
 <?php
 
@@ -28,88 +22,118 @@ function enqueue_custom_scripts() {
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 ?>
 
-<?php  // ajout bibliothèque Select2 pour modifications des options des filtres
-/*function enqueue_select2() {
+<?php 
+function enqueue_custom_ajax_scripts() {
     
-    wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
+    wp_enqueue_script( 'custom-ajax-script', get_template_directory_uri() . '/js/ajax.js', array( 'jquery' ), null, true );
+
     
-    
-    wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), null, true);
-    
-    // Charger un script personnalisé pour initialiser Select2
-    wp_enqueue_script('custom-select2', get_template_directory_uri() . '/js/select2.js', array('jquery', 'select2-js'), null, true);
-}
-add_action('wp_enqueue_scripts', 'enqueue_select2');*/
-?>
-<?php // recuperer toutes les taxonomies
-function taxonomy_terms($taxonomy) {
-    $terms = get_terms(array(
-        'taxonomy' => $taxonomy,
-        'hide_empty' => false,
+    wp_localize_script( 'custom-ajax-script', 'customAjax', array(
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'nonce' => wp_create_nonce( 'custom_ajax_nonce' )
     ));
-    
-    if (!empty($terms) && !is_wp_error($terms)) {
-        foreach ($terms as $term) {
-            echo '<option value="' . esc_attr($term->slug) . '">' . esc_html($term->name) . '</option>';
-        }
-    }
 }
+add_action( 'wp_enqueue_scripts', 'enqueue_custom_ajax_scripts' ); ?>
 
-function taxonomy_filters() {
-    ?>
-    <div>
-    <select id="format-filter" class="filters__formats filters__all" name="format">
-        <option value="" disabled selected hidden>FORMATS</option>
-        <?php taxonomy_terms('format'); ?>
-    </select>
 
-    <select id="categorie-filter" class="filters__categories filters__all" name="categorie">
-        <option value="" disabled selected hidden>CATÉGORIES</option>
-        <?php taxonomy_terms('categorie'); ?>
-    </select>
-    </div>
-    <?php
-} // remplissage dynamique des filtres Categories et format
-?>
 
-<?php /*
-function ajax_filter_photos() {
+<?php 
+function load_more_photos_ajax() {
+    check_ajax_referer('custom_ajax_nonce', 'nonce');
+
+    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
-    $categorie = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
-    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'ASC';
+    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
 
     $related_args = array(
-        'post_type' => 'photo', // Assurez-vous que 'photo' est votre type de post personnalisé
+        'post_type' => 'photo',
+        'posts_per_page' => 8,
+        'paged' => $paged,
         'orderby' => 'date',
         'order' => $order,
-        'posts_per_page' => -1,
+        'tax_query' => array(
+            'relation' => 'AND',
+            array(
+                'taxonomy' => 'categorie',
+                'field'    => 'slug',
+                'terms'    => $category,
+                'operator' => empty($category) ? 'EXISTS' : 'IN',
+            ),
+            array(
+                'taxonomy' => 'format',
+                'field'    => 'slug',
+                'terms'    => $format,
+                'operator' => empty($format) ? 'EXISTS' : 'IN',
+            ),
+        ),
     );
+    error_log(print_r($related_args, true));
+    $related_query = new WP_Query($related_args);?>
 
-    // Filtrer par taxonomie "format"
-    if ($format) {
-        $related_args['tax_query'][] = array(
-            'taxonomy' => 'format',
-            'field'    => 'slug',
-            'terms'    => $format,
-        );
+    <div id="photo-container" class="related-photos">
+    <?php
+    if ($related_query->have_posts()) { 
+        $index = 0;?>
+        
+        <?php
+        while ($related_query->have_posts()) {
+            $related_query->the_post();
+            ?>
+        
+            <div class="related-photos__thumbnail">
+                <?php if (has_post_thumbnail()) : ?>
+                    <a href="<?php the_permalink(); ?>" class="related-photos__thumbnail__link"
+                       data-index="<?php echo $index; ?>"
+                       data-image="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'large'); ?>"
+                       data-title="<?php the_title(); ?>"
+                       data-reference="<?php the_field('reference'); ?>"
+                       data-categorie="<?php
+                           $terms = get_the_terms(get_the_ID(), 'categorie');
+                           if ($terms && !is_wp_error($terms)) {
+                               foreach ($terms as $term) {
+                                   echo esc_html($term->name) . ' ';
+                               }
+                           } else {
+                               echo 'Aucune catégorie trouvée';
+                           } ?>">
+                        <?php the_post_thumbnail('full'); ?>
+                        <div class="related-photos__thumbnail__link__overlay">
+                            <span class="icon-eye icon-eye-related">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-eye.png" alt="Icone Oeil" />
+                            </span>
+                            <div class="info-box">
+                                <p><?php the_field('reference'); ?></p>
+                                <?php
+                                $terms = get_the_terms(get_the_ID(), 'categorie');
+                                if ($terms && !is_wp_error($terms)) {
+                                    foreach ($terms as $term) {
+                                        echo '<p>' . esc_html($term->name) . '</p>';
+                                    }
+                                } else {
+                                    echo '<p>Aucune categorie trouvée</p>';
+                                }
+                                ?>
+                            </div>
+                            <span class="icon-fullscreen" data-index="<?php echo $index; ?>">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-fullscreen.png" alt="Icone Plein écran" />
+                            </span>
+                        </div>
+                    </a>
+                <?php endif; ?>
+            </div>
+        
+            <?php
+            $index++;
+        }?>
+    </div>
+      <?php  wp_reset_postdata();
+    } else {
+        echo 'Aucune autre photo trouvée.';
     }
 
-    // Filtrer par taxonomie "categorie"
-    if ($categorie) {
-        $related_args['tax_query'][] = array(
-            'taxonomy' => 'categorie',
-            'field'    => 'slug',
-            'terms'    => $categorie,
-        );
-    }
-
-    // Si on a plusieurs filtres, ajouter la relation dans la tax_query
-    if (!empty($args['tax_query']) && count($args['tax_query']) > 1) {
-        $args['tax_query']['relation'] = 'AND';
-    }
-    wp_die(); // Fin de l'exécution pour Ajax
+    wp_die();
 }
 
-add_action('wp_ajax_filter_photos', 'ajax_filter_photos');
-add_action('wp_ajax_nopriv_filter_photos', 'ajax_filter_photos');*/
-?>
+add_action('wp_ajax_load_more_photos', 'load_more_photos_ajax');
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos_ajax');?>

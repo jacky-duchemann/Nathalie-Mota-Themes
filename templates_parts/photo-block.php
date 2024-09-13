@@ -1,4 +1,4 @@
-<div class="related-photos">
+<div id="photo-container" class="related-photos"> 
     <?php $index = 0;?>
                     <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
                         <div class="related-photos__thumbnail">

@@ -9,4 +9,6 @@
     <?php get_template_part('templates_parts/lightbox');?>
     <?php wp_footer(); ?>
 </footer>
-
+<script type="text/javascript">
+    var ajaxUrl = '<?php echo admin_url('admin-ajax.php'); ?>';
+</script>

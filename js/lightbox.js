@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+function initializeLightbox() {
 const close = document.querySelector('.lightbox__close');
 const lightbox = document.querySelector('.lightbox');
 const lightboxImg = document.querySelector('.lightbox__container img'); // Image à changer dans la lightbox
@@ -12,6 +12,10 @@ const lightboxCategorie = document.querySelector('.lightbox__container__info__ca
         let images = [];
         let references = [];
         let categories = [];
+
+        images = [];
+        references = [];
+        categories = [];
 
         console.log('Lightbox:', lightbox);
         console.log('Open buttons:', openLightBox);
@@ -62,6 +66,9 @@ prevBtn.addEventListener('click', function() {
     lightboxReference.textContent = references[currentIndex]; // Mettre à jour la référence
     lightboxCategorie.textContent = categories[currentIndex]; // Mettre à jour la catégorie
 });
-});
+}
+
+// initialisation au chargement de la page
+document.addEventListener("DOMContentLoaded", initializeLightbox);
 
 

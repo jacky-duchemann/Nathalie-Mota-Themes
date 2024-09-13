@@ -15,9 +15,30 @@ $hero_image = get_random_hero_image();
 </header>
 
 <form id="photo-filters" class="filters">
-    <?php taxonomy_filters(); ?>
-    <!-- filtres formats et catégories s'affichent ici -->
+    <div>
+    <select id="format-filter" class="filters__formats filters__all" name="format">
+        <option value="" disabled selected hidden>FORMATS</options>
+        <?php
+        $categories = get_terms(array('taxonomy' => 'categorie'));
+        foreach ($categories as $category) {
+            echo '<option value="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</option>';
+        }
+        ?>
+    </select>
+
+    <select id="categorie-filter" class="filters__categories filters__all">
+        <option value=""name="categorie">CATÉGORIES</option>
+        <?php
+        $formats = get_terms(array('taxonomy' => 'format'));
+        foreach($formats as $format) {
+            echo '<option value="' . esc_attr($format->slug) . '">' . esc_html($format->name) . '</option>';
+        }
+        ?>
+    </select>
     </div>
+    <?php /*taxonomy_filters();*/ ?>
+    <!-- filtres formats et catégories s'affichent ici -->
+
     <select id="sort-order" class="filters__orderby filters__all" name="order">
         <option value="ASC" disabled selected hidden>TRIER PAR</option> 
         <option value=""> + RÉCENTES </option>
@@ -25,25 +46,25 @@ $hero_image = get_random_hero_image();
         
     </select>
 </form>
-<?php
-// Query pour récupérer les photos dans les mêmes catégories
-            $related_args = array(
-                'post_type'      => 'photo', 
-                'posts_per_page' => 8,   
-            );
-?>
 
-<?php 
+<div class="grid-photo">
+<?php // wp_query initiale
+$related_args = array(
+    'post_type'      => 'photo',
+    'posts_per_page' => 8,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+);
+
 $related_query = new WP_Query($related_args);
-
-if ($related_query->have_posts()) : ?>
-    <div class="grid-photo">
-    <?php include 'templates_parts/photo-block.php'; ?>
-    </div>
-    <?php endif;
-    wp_reset_postdata();
-    ?>
-
+if ($related_query->have_posts()) :
+    include 'templates_parts/photo-block.php';
+endif;
+?>
+</div>
+<div class="btn-load">
+<button class="" id="load-more">Charger plus</button>
+</div>
 <?php
 get_footer(); // inclut le footer du site
 ?>
