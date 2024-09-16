@@ -27,8 +27,8 @@ const lightboxCategorie = document.querySelector('.lightbox__container__info__ca
     const thumbnailLink = element.closest('.related-photos__thumbnail__link');
     if (thumbnailLink) {
         const imageUrl = thumbnailLink.getAttribute('data-image');
-        const reference = thumbnailLink.getAttribute('data-reference'); // recupere la reference 
-        const categorie = thumbnailLink.getAttribute('data-categorie'); // recupere la catégorie
+        const reference = thumbnailLink.getAttribute('data-reference');  
+        const categorie = thumbnailLink.getAttribute('data-categorie'); 
 
         images.push(imageUrl);
         references.push(reference);
@@ -38,7 +38,7 @@ const lightboxCategorie = document.querySelector('.lightbox__container__info__ca
     element.addEventListener('click', function(event) {
         event.preventDefault();
         currentIndex = index; // Définir l'image actuelle
-        lightbox.style.display = "block"; // Afficher la lightbox
+        lightbox.style.display = "block"; 
         lightboxImg.src = images[currentIndex]; // Afficher l'image dans la lightbox
         console.log("Image clicked:", images[currentIndex]);
         lightboxReference.textContent = references[currentIndex]; // affiche la reference de la photo
@@ -63,8 +63,8 @@ nextBtn.addEventListener('click', function() {
 prevBtn.addEventListener('click', function() {
     currentIndex = (currentIndex - 1 + images.length) % images.length; // Passer à l'image précédente 
     lightboxImg.src = images[currentIndex];
-    lightboxReference.textContent = references[currentIndex]; // Mettre à jour la référence
-    lightboxCategorie.textContent = categories[currentIndex]; // Mettre à jour la catégorie
+    lightboxReference.textContent = references[currentIndex]; 
+    lightboxCategorie.textContent = categories[currentIndex]; 
 });
 }
 

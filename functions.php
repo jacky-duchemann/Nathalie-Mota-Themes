@@ -42,33 +42,42 @@ function load_more_photos_ajax() {
     check_ajax_referer('custom_ajax_nonce', 'nonce');
 
     $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
-    $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
+    $category = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
 
+    /*var_dump($category);*/
+    
+    
+    $tax_query = array('relation' => 'AND');
+
+    if (!empty($category)) {
+        $tax_query[] = array(
+            'taxonomy' => 'categorie',
+            'field'    => 'slug',
+            'terms'    => $category,
+            'operator' => 'IN', // Utilisez 'IN' seulement si une catégorie est sélectionnée
+        );
+    }
+    
+    if (!empty($format)) {
+        $tax_query[] = array(
+            'taxonomy' => 'format',
+            'field'    => 'slug',
+            'terms'    => $format,
+            'operator' => 'IN', // Utilisez 'IN' seulement si un format est sélectionné
+        );
+    }
+    
     $related_args = array(
         'post_type' => 'photo',
         'posts_per_page' => 8,
         'paged' => $paged,
         'orderby' => 'date',
         'order' => $order,
-        'tax_query' => array(
-            'relation' => 'AND',
-            array(
-                'taxonomy' => 'categorie',
-                'field'    => 'slug',
-                'terms'    => $category,
-                'operator' => empty($category) ? 'EXISTS' : 'IN',
-            ),
-            array(
-                'taxonomy' => 'format',
-                'field'    => 'slug',
-                'terms'    => $format,
-                'operator' => empty($format) ? 'EXISTS' : 'IN',
-            ),
-        ),
+        'tax_query' => count($tax_query) > 1 ? $tax_query : '', 
     );
-    error_log(print_r($related_args, true));
+    
     $related_query = new WP_Query($related_args);?>
 
     <div id="photo-container" class="related-photos">
@@ -130,6 +139,7 @@ function load_more_photos_ajax() {
       <?php  wp_reset_postdata();
     } else {
         echo 'Aucune autre photo trouvée.';
+        /*var_dump($related_query->request);*/
     }
 
     wp_die();

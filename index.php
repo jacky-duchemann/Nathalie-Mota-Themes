@@ -16,8 +16,8 @@ $hero_image = get_random_hero_image();
 
 <form id="photo-filters" class="filters">
     <div>
-    <select id="format-filter" class="filters__formats filters__all" name="format">
-        <option value="" disabled selected hidden>FORMATS</options>
+    <select id="categorie-filter" class="filters__formats filters__all" name="categorie">
+        <option value="" disabled selected hidden>CATÉGORIES</options>
         <?php
         $categories = get_terms(array('taxonomy' => 'categorie'));
         foreach ($categories as $category) {
@@ -26,8 +26,8 @@ $hero_image = get_random_hero_image();
         ?>
     </select>
 
-    <select id="categorie-filter" class="filters__categories filters__all">
-        <option value=""name="categorie">CATÉGORIES</option>
+    <select id="format-filter" class="filters__categories filters__all">
+        <option value=""name="format">FORMATS</option>
         <?php
         $formats = get_terms(array('taxonomy' => 'format'));
         foreach($formats as $format) {
@@ -36,8 +36,6 @@ $hero_image = get_random_hero_image();
         ?>
     </select>
     </div>
-    <?php /*taxonomy_filters();*/ ?>
-    <!-- filtres formats et catégories s'affichent ici -->
 
     <select id="sort-order" class="filters__orderby filters__all" name="order">
         <option value="ASC" disabled selected hidden>TRIER PAR</option> 

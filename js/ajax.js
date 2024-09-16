@@ -2,6 +2,14 @@ jQuery(document).ready(function($) {
     var page = 1;
     
     function loadMorePhotos() {
+        var category = $('#categorie-filter').val();
+        var format = $('#format-filter').val();
+        var order = $('#sort-order').val();
+
+        console.log('Filtre Catégorie:', category);  // Vérifie la valeur
+        console.log('Filtre Format:', format);        // Vérifie la valeur
+        console.log('Ordre:', order);                 // Vérifie la valeur
+
         $.ajax({
             url: customAjax.ajaxurl,
             type: 'POST',
@@ -9,11 +17,12 @@ jQuery(document).ready(function($) {
                 action: 'load_more_photos',
                 nonce: customAjax.nonce,
                 page: page,
-                category: $('#categorie-filter').val(),
-                format: $('#format-filter').val(),
-                order: $('#sort-order').val()
+                categorie: category,
+                format: format,
+                order: order
             },
             success: function(response) {
+                console.log('Response:', response); // Affiche la réponse dans la console
                 if (response.trim() === 'Aucune autre photo trouvée.') {
                     $('#load-more').hide();
                 } else {
@@ -34,6 +43,9 @@ jQuery(document).ready(function($) {
     $('#photo-filters select').on('change', function() {
         page = 1; 
         $('.grid-photo').html(''); 
+        console.log('Category:', $('#categorie-filter').val());
+        console.log('Format:', $('#format-filter').val());
+        console.log('Order:', $('#sort-order').val());
         loadMorePhotos(); 
     });
 });
