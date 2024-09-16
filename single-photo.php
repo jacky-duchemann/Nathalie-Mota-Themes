@@ -50,9 +50,26 @@ if (have_posts()) :
             <div class="contact__button">
                 <p> Cette photo vous intéresse? </p>
                 <button id="contact-button">Contact</button>
+            
                 <div class="photo-navigation">
-                    <?php previous_post_link('%link', '&larr;'); ?>
-                    <?php next_post_link('%link', '&rArr;'); ?>
+                <?php 
+            // Récupération des miniatures des posts précédents et suivants
+            $prev_post = get_previous_post();
+            $next_post = get_next_post();
+            ?>
+            <?php if (!empty($prev_post)) : ?>
+                <a href="<?php echo get_permalink($prev_post->ID); ?>" class="previous-link">
+                    <?php previous_post_link('%link', '&#10229;'); ?>
+                    <?php echo get_the_post_thumbnail($prev_post->ID, 'thumbnail', ['class' => 'thumbnail previous_thumbnail', 'id' => 'previous-thumbnail']); ?>
+                </a>
+            <?php endif; ?>
+            
+            <?php if (!empty($next_post)) : ?>
+                <a href="<?php echo get_permalink($next_post->ID); ?>" class="next-link">
+                    <?php next_post_link('%link', '&#10230'); ?>
+                    <?php echo get_the_post_thumbnail($next_post->ID, 'thumbnail', ['class' => 'thumbnail next_thumbnail', 'id' => 'next-thumbnail']); ?>
+                </a>
+            <?php endif; ?>
                 </div>       
             </div>
       </div> 

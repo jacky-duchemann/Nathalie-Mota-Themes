@@ -11,19 +11,6 @@ Tags: Nathalie Mota, Photographe
 /**
 Mixins pour le responsive du site 
 */
-/*$mobile: 767px;
-$tablet: 1024px;
-$desktop: 1200px;
-
-@mixin responsive($breakpoint) {
-    @if $breakpoint == mobile {
-      @media (max-width: $mobile) { @content; }
-    } @else if $breakpoint == tablet {
-      @media (max-width: $tablet) { @content; }
-    } @else if $breakpoint == desktop {
-      @media (min-width: desktop) { @content; }
-    }
-  }*/
 @font-face {
   font-family: "SpaceMono";
   src: url("../fonts/SpaceMono-Regular.woff") format("woff");
@@ -43,6 +30,16 @@ $desktop: 1200px;
     opacity: 1;
   }
 }
+@keyframes fade-in-menu {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    tansform: translateY(0);
+  }
+}
 * {
   font-family: "SpaceMono", sans-serif;
 }
@@ -54,6 +51,11 @@ $desktop: 1200px;
   max-width: 80vw;
   margin: auto;
 }
+@media (max-width: 760px) {
+  .site-header__logo {
+    flex-grow: 1;
+  }
+}
 .site-header__logo img {
   height: 14px;
   width: 256px;
@@ -62,6 +64,24 @@ $desktop: 1200px;
   .site-header__logo img {
     height: 6px;
     width: 120px;
+  }
+}
+.site-header .burger-icon {
+  display: none; /* Cachée sur les grands écrans */
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 30vw;
+  color: black;
+}
+@media (max-width: 760px) {
+  .site-header .burger-icon {
+    display: block;
+  }
+}
+@media (max-width: 760px) {
+  .site-header__navigation {
+    display: none;
   }
 }
 .site-header__navigation ul {
@@ -82,6 +102,43 @@ $desktop: 1200px;
 .site-header__navigation ul li a:hover {
   font-weight: 700;
 }
+.site-header__mobile-menu {
+  display: none; /* Masqué par défaut */
+  background-color: #E00000;
+  padding: 10px;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 760px) {
+  .site-header__mobile-menu {
+    display: none;
+  }
+}
+.site-header__mobile-menu ul {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  line-height: 65px;
+}
+.site-header__mobile-menu ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 44px;
+}
+.site-header__mobile-menu.show {
+  display: block;
+  animation: fade-in-menu 1s ease-in-out forwards;
+}
 
 .hero-header {
   background-size: cover;
@@ -92,6 +149,12 @@ $desktop: 1200px;
   margin: auto;
   align-items: center;
   margin-bottom: 15vh;
+}
+@media (max-width: 760px) {
+  .hero-header {
+    height: 50vh;
+    max-width: 100vw;
+  }
 }
 .hero-header__content {
   justify-content: center;
@@ -106,6 +169,19 @@ $desktop: 1200px;
   -webkit-text-stroke: 1px white;
   opacity: 50%;
 }
+@media (max-width: 760px) {
+  .hero-header__content h1 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  .gap-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+  }
+}
 
 .filters {
   display: flex;
@@ -113,6 +189,12 @@ $desktop: 1200px;
   margin: auto;
   align-items: center;
   justify-content: space-between;
+}
+@media (max-width: 760px) {
+  .filters {
+    flex-direction: column;
+    gap: 5vh;
+  }
 }
 .filters__all {
   width: 260px;
@@ -137,9 +219,21 @@ $desktop: 1200px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  /*text-align: center;
+  align-items: center; */
+  justify-content: center;
+}
+@media (max-width: 760px) {
+  .grid-photo .related-photos {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
 }
 .grid-photo .related-photos__thumbnail {
-  flex: 1 1 calc(50% - 20px); /* Deux colonnes avec un écart de 20px */
+  flex: 1 0 40%;
+  width: 100%;
 }
 
 .btn-load {
@@ -148,6 +242,11 @@ $desktop: 1200px;
   max-width: 70vw;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 760px) {
+  .btn-load {
+    margin-top: 5vh;
+  }
 }
 .btn-load button {
   margin-bottom: 10vh;
@@ -159,6 +258,11 @@ $desktop: 1200px;
   background-color: #D8D8D8;
   cursor: pointer;
   transition: background-color 1.2s ease, transform 0.6s ease, color 0.8s ease, font-weight 0.8s ease;
+}
+@media (max-width: 760px) {
+  .btn-load button {
+    width: 40vw;
+  }
 }
 .btn-load button:hover {
   background-color: black;
@@ -201,9 +305,10 @@ $desktop: 1200px;
 .contact {
   align-items: center;
   max-width: 80vw;
-  height: 118px;
+  height: 15vh;
   margin: auto;
-  margin-bottom: 15vh;
+  padding: 0;
+  margin-bottom: 10vh;
   border-bottom: 1px solid black;
 }
 .contact__button {
@@ -213,7 +318,7 @@ $desktop: 1200px;
   margin: auto;
 }
 .contact__button button {
-  margin-right: 500px;
+  margin-right: 150px;
   width: 272px;
   height: 50px;
   font-size: 14px;
@@ -235,6 +340,49 @@ $desktop: 1200px;
 .contact__button p {
   font-family: "Poppins", sans-serif;
 }
+.contact__button .photo-navigation {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  height: 12vh;
+  border: 1px solid black;
+  /*.next-link {
+      &:hover ~ .next_thumbnail {
+          display: block;
+      }
+  }*/
+}
+.contact__button .photo-navigation .thumbnail {
+  display: none;
+  position: absolute;
+  bottom: 30px;
+  width: 100%; /* Ajustez la taille selon vos besoins */
+  height: auto;
+  border: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+.contact__button .photo-navigation .previous_thumbnail {
+  display: none;
+}
+.contact__button .photo-navigation .next_thumbnail {
+  display: none;
+}
+.contact__button .photo-navigation .previous-link {
+  width: 50vw;
+}
+.contact__button .photo-navigation .previous-link:hover .thumbnail {
+  display: block;
+}
+.contact__button .photo-navigation .next-link {
+  width: 50vw;
+}
+.contact__button .photo-navigation .next-link:hover .thumbnail {
+  display: block;
+}
 
 h2 {
   margin: auto;
@@ -248,10 +396,15 @@ h2 {
   margin: auto;
   justify-content: space-between;
   max-width: 70vw;
-  margin-bottom: 45px;
+  margin-bottom: 10px;
   margin-top: 10vh;
   overflow: hidden;
   gap: 10px;
+}
+@media (max-width: 760px) {
+  .related-photos {
+    flex-direction: column;
+  }
 }
 .related-photos__thumbnail {
   width: 50%;
@@ -428,6 +581,13 @@ h2 {
   gap: 60px;
   margin: auto;
   list-style: none;
+}
+@media (max-width: 760px) {
+  .site-footer ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 }
 .site-footer ul li a {
   text-decoration: none;

@@ -48,3 +48,38 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 })
+
+/*document.addEventListener('DOMContentLoaded', function() {
+    const previousLink = document.querySelector('.previous-link');
+    const nextLink = document.querySelector('.next-link');
+    const previousThumbnail = document.getElementById('previous-thumbnail');
+    const nextThumbnail = document.getElementById('next-thumbnail');
+    
+    // Assurez-vous que les images miniatures sont visibles lorsque la souris est sur les liens
+    previousLink.addEventListener('mouseover', function() {
+        previousThumbnail.style.display = 'block';
+    });
+    previousLink.addEventListener('mouseout', function() {
+        previousThumbnail.style.display = 'none';
+    });
+
+    nextLink.addEventListener('mouseover', function() {
+        nextThumbnail.style.display = 'block';
+    });
+    nextLink.addEventListener('mouseout', function() {
+        nextThumbnail.style.display = 'none';
+    });
+});*/
+
+// Ouverture et fermeture du menu burger
+document.addEventListener('DOMContentLoaded', function() {
+    const burgerIcon = document.getElementById('burger-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    burgerIcon.addEventListener('click', function() {
+        console.log("Je clique sur le menu burger !!");
+        mobileMenu.classList.toggle('show');
+        
+    });
+});
+

@@ -15,7 +15,7 @@ $hero_image = get_random_hero_image();
 </header>
 
 <form id="photo-filters" class="filters">
-    <div>
+    <div class="gap-filter">
     <select id="categorie-filter" class="filters__formats filters__all" name="categorie">
         <option value="" disabled selected hidden>CATÉGORIES</options>
         <?php
@@ -39,8 +39,8 @@ $hero_image = get_random_hero_image();
 
     <select id="sort-order" class="filters__orderby filters__all" name="order">
         <option value="ASC" disabled selected hidden>TRIER PAR</option> 
-        <option value=""> + RÉCENTES </option>
-        <option value=""> - RÉCENTES </option>
+        <option value="DESC"> + RÉCENTES </option>
+        <option value="ASC"> - RÉCENTES </option>
         
     </select>
 </form>

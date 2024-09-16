@@ -49,6 +49,17 @@ $second-font: 'Poppins', sans-serif;
     to {top:0; opacity:1}
 }
 
+@keyframes fade-in-menu {
+    from {
+        opacity: 0;
+        transform: translateY(-100px); // le menu arrive par le haut
+    }
+    to {
+        opacity:1;
+        tansform: translateY(0);
+    }
+}
+
 * {
     font-family: $theme-font;
 }
@@ -60,6 +71,9 @@ $second-font: 'Poppins', sans-serif;
     max-width: 80vw;
     margin: auto;
         &__logo {
+            @include respond_to_mobile {
+                flex-grow: 1;
+            }
             img {
                 height: 14px;
                 width: 256px;
@@ -69,7 +83,22 @@ $second-font: 'Poppins', sans-serif;
                 }
             }
         }
+        .burger-icon {
+            display: none; /* Cachée sur les grands écrans */
+            font-size: 30px;
+            cursor: pointer;
+            padding: 10px;
+            margin-left: 30vw;
+            color: black;
+            //background-color: #333; /* Ajuste la couleur */
+                @include respond_to_mobile {
+                    display: block;
+                }
+        }
         &__navigation {
+            @include respond_to_mobile {
+                display: none;
+            }
             ul {
                 display: flex;
                 flex-direction: row;
@@ -89,7 +118,45 @@ $second-font: 'Poppins', sans-serif;
                     }
             }
         }
+        &__mobile-menu {
+            display: none; /* Masqué par défaut */
+            background-color: #E00000;
+            padding: 10px;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            @include respond_to_mobile {
+                display: none;
+            }
+                ul {
+                    margin-top: 5vh;
+                    margin-bottom: 5vh;
+                    list-style-type: none;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    line-height: 65px;
+                        li {
+                            a {
+                                text-decoration: none;
+                                color: white;
+                                font-size: 44px;
+                            }
+                        }
+                }
+                &.show {
+                    display: block;
+                    animation: fade-in-menu 1s ease-in-out forwards;
+                }
+        }
 }
+
 
 //index.php
 .hero-header {
@@ -101,6 +168,10 @@ $second-font: 'Poppins', sans-serif;
     margin: auto;
     align-items: center;
     margin-bottom: 15vh;
+    @include respond_to_mobile {
+        height: 50vh;
+        max-width: 100vw;
+    }
         &__content {
             justify-content: center;
             align-items: center;
@@ -112,16 +183,30 @@ $second-font: 'Poppins', sans-serif;
                     color: transparent;
                     -webkit-text-stroke: 1px white; // couleur et epaisseur du contour des lettres
                     opacity: 50%;
+                    @include respond_to_mobile {
+                        font-size: 18px;
+                    }
                 }
         }
 }
 
+.gap-filter {
+    @include respond_to_mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 5vh;
+    }
+}
 .filters {
     display: flex;
     max-width: 70vw;
     margin: auto;
     align-items: center;
     justify-content: space-between;
+    @include respond_to_mobile {
+        flex-direction: column;
+        gap: 5vh;
+    }
         &__all {
             width: 260px;
             height: 43px;
@@ -146,9 +231,20 @@ $second-font: 'Poppins', sans-serif;
    .related-photos {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px; 
+            gap: 20px;
+            /*text-align: center;
+            align-items: center; */
+            justify-content: center;
+            @include respond_to_mobile {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
                 &__thumbnail {
-                    flex: 1 1 calc(50% - 20px); /* Deux colonnes avec un écart de 20px */
+                    //flex: 1 1 calc(50% - 20px); /* Deux colonnes avec un écart de 20px */
+                    flex: 1 0 40%;
+                    width: 100%;
                 }
             }
 }
@@ -159,6 +255,9 @@ $second-font: 'Poppins', sans-serif;
     max-width: 70vw;
     justify-content: center;
     align-items: center;
+    @include respond_to_mobile {
+        margin-top: 5vh;
+    }
         button {
             margin-bottom: 10vh;
             width: 20vw;
@@ -169,6 +268,9 @@ $second-font: 'Poppins', sans-serif;
             background-color: #D8D8D8;
             cursor: pointer;
             transition: background-color 1.2s ease, transform 0.6s ease, color 0.8s ease, font-weight 0.8s ease;
+            @include respond_to_mobile {
+                width: 40vw;
+            }
                 &:hover {
                     background-color: black; 
                     color: white;
@@ -215,9 +317,10 @@ $second-font: 'Poppins', sans-serif;
 .contact {
     align-items: center;
     max-width: 80vw;
-    height: 118px;
+    height: 15vh;
     margin: auto;
-    margin-bottom: 15vh;
+    padding: 0;
+    margin-bottom: 10vh;
     border-bottom: 1px solid black;
         &__button {
             display: flex;
@@ -225,7 +328,7 @@ $second-font: 'Poppins', sans-serif;
             justify-content: space-between;
             margin: auto;
                 button {
-                    margin-right: 500px;
+                    margin-right: 150px;
                     width: 272px;
                     height: 50px;
                     font-size: 14px;
@@ -248,9 +351,54 @@ $second-font: 'Poppins', sans-serif;
                 p {
                     font-family: $second-font;
                 }
+                .photo-navigation {
+                    position: relative;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 20%;
+                    height: 12vh;
+                    border: 1px solid black;
+                        .thumbnail {
+                            display: none;
+                            position: absolute;
+                            bottom: 30px; 
+                            width: 100%; /* Ajustez la taille selon vos besoins */
+                            height: auto;
+                            border: 1px solid #ddd;
+                            background: #fff;
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                            z-index: 10;
+                        }
+                        .previous_thumbnail {
+                            display: none;
+                        }
+                        .next_thumbnail {
+                            display: none;
+                        }
+                        .previous-link {
+                            width: 50vw;
+                                &:hover .thumbnail {
+                                display: block;
+                            }
+                        }
+                        .next-link {
+                            width: 50vw;
+                                &:hover .thumbnail {
+                                display: block;
+                        }
+                }
+                /*.next-link {
+                    &:hover ~ .next_thumbnail {
+                        display: block;
+                    }
+                }*/
+                
+        }
 
         }
 }
+
 h2 {
     margin: auto;
     max-width: 80vw;
@@ -266,6 +414,9 @@ h2 {
     margin-top: 10vh;
     overflow: hidden;
     gap: 10px;
+    @include respond_to_mobile {
+        flex-direction: column;
+    }
         &__thumbnail {
             width: 50%;
             position: relative;
@@ -447,6 +598,11 @@ h2 {
             gap: 60px;
             margin: auto;
             list-style: none;
+            @include respond_to_mobile {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
                 li {
                    a {
                     text-decoration: none;
