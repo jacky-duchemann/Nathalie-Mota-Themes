@@ -10,7 +10,7 @@
     </a>
 </div>
 <!-- Icône du menu burger (affichée uniquement sur mobile) -->
-<div class="burger-icon" id="burger-icon">&#9776;</div>
+<div class="burger-icon" id="burger-icon"> &#9776; </div>
 <nav class="site-header__navigation" role="navigation" aria-label="<?php _e('Menu principal', 'text-domain'); ?>">
 <?php
 /**

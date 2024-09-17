@@ -78,8 +78,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     burgerIcon.addEventListener('click', function() {
         console.log("Je clique sur le menu burger !!");
+        burgerIcon.classList.toggle('active');
+
+        // transformation du burger en croix
+        if (burgerIcon.classList.contains('active')) {
+            burgerIcon.innerHTML = 'X';
+        } else {
+            burgerIcon.innerHTML = '&#9776;'; // caractère du burger
+        }
         mobileMenu.classList.toggle('show');
         
     });
 });
 
+
+// Modale contact : affichage pour mobile
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const mobileMenuNav = document.getElementById("mobile-menu");
+    const menuList = mobileMenuNav.querySelector("ul.menu");
+    const targetLink = menuList.querySelectorAll("li.menu-item a")[2]; // 
+    const modal = document.querySelector('.modal');
+
+    // Ajouter un event listener au lien sélectionné
+    targetLink.addEventListener("click", function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut
+        console.log("Mobile Menu contact cliqué !");
+        modal.style.display = "block";
+    });
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+            console.log("La modale se ferme autrement !");
+        }
+    }
+})

@@ -20,16 +20,6 @@ Mixins pour le responsive du site
   src: url("../fonts/Poppins-Regular.woff") format("woff");
 }
 /*  Animation  */
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
 @keyframes fade-in-menu {
   from {
     opacity: 0;
@@ -38,6 +28,16 @@ Mixins pour le responsive du site
   to {
     opacity: 1;
     tansform: translateY(0);
+  }
+}
+@keyframes fade-out-menu {
+  from {
+    opacity: 1;
+    tansform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100px);
   }
 }
 * {
@@ -79,6 +79,12 @@ Mixins pour le responsive du site
     display: block;
   }
 }
+.site-header .burger-icon.active {
+  color: rgb(68, 64, 64); /* couleur de la croix */
+  font-size: 30px;
+  padding: none;
+  font-family: "Poppins", sans-serif;
+}
 @media (max-width: 760px) {
   .site-header__navigation {
     display: none;
@@ -107,12 +113,10 @@ Mixins pour le responsive du site
   background-color: #E00000;
   padding: 10px;
   position: absolute;
-  top: 70px;
+  top: 4rem;
   right: 0;
   width: 100%;
   z-index: 999;
-  align-items: center;
-  justify-content: center;
 }
 @media (max-width: 760px) {
   .site-header__mobile-menu {
@@ -138,6 +142,10 @@ Mixins pour le responsive du site
 .site-header__mobile-menu.show {
   display: block;
   animation: fade-in-menu 1s ease-in-out forwards;
+}
+.site-header__mobile-menu.hide {
+  animation: fade-out-menu 1s ease-in-out forwards;
+  display: none; /* Assure que le menu est caché après l'animation */
 }
 
 .hero-header {
@@ -219,8 +227,6 @@ Mixins pour le responsive du site
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  /*text-align: center;
-  align-items: center; */
   justify-content: center;
 }
 @media (max-width: 760px) {
@@ -282,6 +288,12 @@ Mixins pour le responsive du site
   overflow: hidden;
   font-size: 14px;
 }
+@media (max-width: 760px) {
+  .photo-content {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
 .photo-content__info {
   margin: auto;
   margin-bottom: 0;
@@ -293,9 +305,25 @@ Mixins pour le responsive du site
   font-size: 66px;
   line-height: 58px;
 }
+@media (max-width: 760px) {
+  .photo-content__info h1 {
+    font-size: 35px;
+  }
+}
+@media (max-width: 760px) {
+  .photo-content__info {
+    border: none;
+    width: 80%;
+  }
+}
 .photo-content__image {
   width: 50%;
   height: 100%;
+}
+@media (max-width: 760px) {
+  .photo-content__image {
+    width: 80%;
+  }
 }
 .photo-content__image img {
   width: 100%;
@@ -308,14 +336,26 @@ Mixins pour le responsive du site
   height: 15vh;
   margin: auto;
   padding: 0;
-  margin-bottom: 10vh;
+  margin-bottom: 2vh;
   border-bottom: 1px solid black;
+}
+@media (max-width: 760px) {
+  .contact {
+    border-top: 1px solid black;
+  }
 }
 .contact__button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: auto;
+}
+@media (max-width: 760px) {
+  .contact__button {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .contact__button button {
   margin-right: 150px;
@@ -328,6 +368,12 @@ Mixins pour le responsive du site
   cursor: pointer;
   transition: background-color 1.2s ease, transform 0.6s ease, color 0.8s ease, font-weight 0.8s ease-in-out;
 }
+@media (max-width: 760px) {
+  .contact__button button {
+    margin-right: 0;
+    margin-bottom: 2vh;
+  }
+}
 .contact__button button:hover {
   background-color: black;
   color: white;
@@ -339,6 +385,11 @@ Mixins pour le responsive du site
 }
 .contact__button p {
   font-family: "Poppins", sans-serif;
+}
+@media (max-width: 760px) {
+  .contact__button p {
+    width: 80%;
+  }
 }
 .contact__button .photo-navigation {
   position: relative;
@@ -353,6 +404,11 @@ Mixins pour le responsive du site
           display: block;
       }
   }*/
+}
+@media (max-width: 760px) {
+  .contact__button .photo-navigation {
+    display: none;
+  }
 }
 .contact__button .photo-navigation .thumbnail {
   display: none;
@@ -390,6 +446,13 @@ h2 {
   font-size: 18px;
   font-weight: 400;
 }
+@media (max-width: 760px) {
+  h2 {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
 
 .related-photos {
   display: flex;
@@ -404,11 +467,22 @@ h2 {
 @media (max-width: 760px) {
   .related-photos {
     flex-direction: column;
+    width: 100%;
+    margin-top: 5vh;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 2vh;
   }
 }
 .related-photos__thumbnail {
   width: 50%;
   position: relative;
+}
+@media (max-width: 760px) {
+  .related-photos__thumbnail {
+    width: 100%;
+  }
 }
 .related-photos__thumbnail img {
   width: 100%;
@@ -429,6 +503,16 @@ h2 {
   transition: opacity 0.3s ease;
   width: 100%;
   height: 100%;
+}
+@media (max-width: 760px) {
+  .related-photos__thumbnail__link__overlay {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1250px) {
+  .related-photos__thumbnail__link__overlay {
+    display: none;
+  }
 }
 .related-photos__thumbnail__link__overlay:hover {
   opacity: 1;
@@ -574,6 +658,7 @@ h2 {
   margin: auto;
   border-top: 1px solid black;
   padding-top: 5px;
+  justify-content: center;
 }
 .site-footer ul {
   display: flex;
@@ -586,6 +671,8 @@ h2 {
   .site-footer ul {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding-inline-start: 0;
     gap: 10px;
   }
 }

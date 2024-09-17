@@ -39,16 +39,6 @@ $theme-font: 'SpaceMono', sans-serif;
 $second-font: 'Poppins', sans-serif;
 
 /*  Animation  */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
 @keyframes fade-in-menu {
     from {
         opacity: 0;
@@ -57,6 +47,17 @@ $second-font: 'Poppins', sans-serif;
     to {
         opacity:1;
         tansform: translateY(0);
+    }
+}
+
+@keyframes fade-out-menu {
+    from {
+        opacity:1;
+        tansform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-100px); // le menu arrive par le haut
     }
 }
 
@@ -91,8 +92,14 @@ $second-font: 'Poppins', sans-serif;
             margin-left: 30vw;
             color: black;
             //background-color: #333; /* Ajuste la couleur */
-                @include respond_to_mobile {
+            @include respond_to_mobile {
                     display: block;
+            }
+                &.active {
+                    color: rgb(68, 64, 64); /* couleur de la croix */
+                    font-size: 30px;
+                    padding: none;
+                    font-family: $second-font;
                 }
         }
         &__navigation {
@@ -123,12 +130,10 @@ $second-font: 'Poppins', sans-serif;
             background-color: #E00000;
             padding: 10px;
             position: absolute;
-            top: 70px;
+            top: 4rem;
             right: 0;
             width: 100%;
             z-index: 999;
-            align-items: center;
-            justify-content: center;
             @include respond_to_mobile {
                 display: none;
             }
@@ -154,8 +159,13 @@ $second-font: 'Poppins', sans-serif;
                     display: block;
                     animation: fade-in-menu 1s ease-in-out forwards;
                 }
+                &.hide {
+                    animation: fade-out-menu 1s ease-in-out forwards;
+                    display: none; /* Assure que le menu est caché après l'animation */
+                }
         }
 }
+
 
 
 //index.php
@@ -232,8 +242,6 @@ $second-font: 'Poppins', sans-serif;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            /*text-align: center;
-            align-items: center; */
             justify-content: center;
             @include respond_to_mobile {
                 flex-direction: column;
@@ -293,20 +301,34 @@ $second-font: 'Poppins', sans-serif;
     margin-top: 25px;
     overflow: hidden;
     font-size: 14px;
+    @include respond_to_mobile {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
         &__info {
             h1 {
                 font-size: 66px;
                 line-height: 58px;
+                @include respond_to_mobile {
+                    font-size: 35px;
+                }
             }
             margin: auto;
             margin-bottom: 0;
             width: 50%;
             height: 100%;
             border-bottom: 1px solid black;
+            @include respond_to_mobile {
+                border: none;
+                width: 80%;
+            }
         }
         &__image {
             width: 50%;
             height: 100%;
+            @include respond_to_mobile {
+                width: 80%;
+            }
             img {
                 width: 100%;
                 height: 100%;
@@ -320,13 +342,21 @@ $second-font: 'Poppins', sans-serif;
     height: 15vh;
     margin: auto;
     padding: 0;
-    margin-bottom: 10vh;
+    margin-bottom: 2vh;
     border-bottom: 1px solid black;
+    @include respond_to_mobile {
+        border-top: 1px solid black;
+    }
         &__button {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             margin: auto;
+            @include respond_to_mobile {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
                 button {
                     margin-right: 150px;
                     width: 272px;
@@ -337,11 +367,14 @@ $second-font: 'Poppins', sans-serif;
                     border-radius: 2px;
                     cursor: pointer;
                     transition: background-color 1.2s ease, transform 0.6s ease, color 0.8s ease, font-weight 0.8s ease-in-out;
+                    @include respond_to_mobile {
+                        margin-right: 0;
+                        margin-bottom: 2vh;
+                    }
                         &:hover {
                             background-color: black; 
                             color: white;
                             transform: scale(1.1); /* Agrandit légèrement le bouton */
-                            //border: 2px solid black;
                             font-weight: bolder;
                         }
                         &:active {
@@ -350,6 +383,9 @@ $second-font: 'Poppins', sans-serif;
                 }
                 p {
                     font-family: $second-font;
+                    @include respond_to_mobile {
+                        width: 80%;
+                    }
                 }
                 .photo-navigation {
                     position: relative;
@@ -359,6 +395,9 @@ $second-font: 'Poppins', sans-serif;
                     width: 20%;
                     height: 12vh;
                     border: 1px solid black;
+                    @include respond_to_mobile {
+                        display: none;
+                    }
                         .thumbnail {
                             display: none;
                             position: absolute;
@@ -404,6 +443,11 @@ h2 {
     max-width: 80vw;
     font-size: 18px;
     font-weight: 400;
+    @include respond_to_mobile {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 }
 .related-photos {
     display: flex;
@@ -416,10 +460,19 @@ h2 {
     gap: 10px;
     @include respond_to_mobile {
         flex-direction: column;
+        width: 100%;
+        margin-top: 5vh;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        gap: 2vh;
     }
         &__thumbnail {
             width: 50%;
             position: relative;
+            @include respond_to_mobile {
+                width: 100%;
+            }
             img {
                 width: 100%;
                 height: 50vh;
@@ -439,6 +492,12 @@ h2 {
                     transition: opacity 0.3s ease;
                     width: 100%; 
                     height: 100%; 
+                    @include respond_to_mobile {
+                        display: none;
+                    }
+                    @include respond_to_tablet {
+                        display: none;
+                    }
                         &:hover {
                             opacity: 1;
                         }
@@ -592,6 +651,7 @@ h2 {
     margin: auto;
     border-top: 1px solid black;
     padding-top: 5px;
+    justify-content: center;
         ul {
             display: flex;
             flex-direction: row;
@@ -601,6 +661,8 @@ h2 {
             @include respond_to_mobile {
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
+                padding-inline-start: 0; // enlever le padding par defaut des ul
                 gap: 10px;
             }
                 li {
