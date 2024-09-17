@@ -560,7 +560,7 @@ h2 {
 .modal {
   display: none;
   position: fixed;
-  top: 6%;
+  top: 0;
   left: 50%;
   z-index: 1000; /* Assure que la modale est au-dessus des autres éléments */
   transform: translateX(-50%); /* Centre la modale horizontalement */
@@ -574,6 +574,11 @@ h2 {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 760px) {
+  .modal {
+    top: 0;
+  }
+}
 .modal__content {
   display: flex;
   flex-direction: column;
@@ -585,6 +590,12 @@ h2 {
   max-width: 50vw;
   box-sizing: border-box;
   margin: auto;
+}
+@media (max-width: 760px) {
+  .modal__content {
+    max-width: 80vw;
+    max-height: 80vh;
+  }
 }
 .modal__content .close {
   color: #aaa;
@@ -606,6 +617,12 @@ h2 {
   width: 50vw;
   height: 15vh;
 }
+@media (max-width: 760px) {
+  .modal__content img {
+    width: 100%;
+    height: 10vh;
+  }
+}
 .modal__content .wpcf7 {
   display: flex;
   margin: 0 auto;
@@ -622,11 +639,21 @@ h2 {
   border: 1px solid #B8BBC2;
   border-radius: 8px;
 }
+@media (max-width: 760px) {
+  .modal__content .wpcf7 span input {
+    height: 20px;
+  }
+}
 .modal__content .wpcf7 span textarea {
   width: 263px;
   height: 20vh;
   border: 1px solid #B8BBC2;
   border-radius: 8px;
+}
+@media (max-width: 760px) {
+  .modal__content .wpcf7 span textarea {
+    height: 15vh;
+  }
 }
 .modal__content .wpcf7 .wpcf7-submit {
   display: block;
@@ -648,6 +675,12 @@ h2 {
 }
 .modal__content .wpcf7 .wpcf7-submit:active {
   transform: scale(0.9); /* Réduit légèrement la taille du bouton lorsqu'il est pressé */
+}
+
+.wpcf7 form .wpcf7-response-output {
+  max-width: 50vh;
+  font-size: 8px;
+  margin-top: -3vh;
 }
 
 /********************/
