@@ -49,29 +49,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
 })
 
-/*document.addEventListener('DOMContentLoaded', function() {
-    const previousLink = document.querySelector('.previous-link');
-    const nextLink = document.querySelector('.next-link');
-    const previousThumbnail = document.getElementById('previous-thumbnail');
-    const nextThumbnail = document.getElementById('next-thumbnail');
-    
-    // Assurez-vous que les images miniatures sont visibles lorsque la souris est sur les liens
-    previousLink.addEventListener('mouseover', function() {
-        previousThumbnail.style.display = 'block';
-    });
-    previousLink.addEventListener('mouseout', function() {
-        previousThumbnail.style.display = 'none';
-    });
+/** 
+ * Mini box de navigation entre articles
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    // Sélectionner les éléments de navigation et la miniature actuelle
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+    const thumbnailImg = document.getElementById('mini-thumbnail-img');
 
-    nextLink.addEventListener('mouseover', function() {
-        nextThumbnail.style.display = 'block';
-    });
-    nextLink.addEventListener('mouseout', function() {
-        nextThumbnail.style.display = 'none';
-    });
-});*/
+    // Sauvegarder la source actuelle de la miniature pour la restaurer
+    const originalThumbnailSrc = thumbnailImg.src;
 
-// Ouverture et fermeture du menu burger
+    // Fonction pour changer l'image de la miniature au survol
+    function showThumbnail(e) {
+        const thumbnailUrl = e.target.getAttribute('data-thumbnail');
+        if (thumbnailUrl) {
+            thumbnailImg.src = thumbnailUrl;
+        }
+    }
+
+    // Fonction pour restaurer l'image de la miniature originale après le survol
+    function restoreOriginalThumbnail() {
+        thumbnailImg.src = originalThumbnailSrc;
+    }
+
+    // Ajout des événements de survol aux boutons "précédent" et "suivant"
+    prevButton.addEventListener('mouseover', showThumbnail);
+    nextButton.addEventListener('mouseover', showThumbnail);
+
+    // Restaurer l'image originale lorsqu'on ne survole plus les boutons
+    prevButton.addEventListener('mouseout', restoreOriginalThumbnail);
+    nextButton.addEventListener('mouseout', restoreOriginalThumbnail);
+});
+
+/**
+ * Ouverture et fermeture du menu burger
+ */ 
 document.addEventListener('DOMContentLoaded', function() {
     const burgerIcon = document.getElementById('burger-icon');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -113,4 +127,5 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("La modale se ferme autrement !");
         }
     }
-})
+});
+

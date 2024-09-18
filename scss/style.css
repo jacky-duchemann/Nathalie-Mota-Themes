@@ -117,6 +117,7 @@ Mixins pour le responsive du site
   right: 0;
   width: 100%;
   z-index: 999;
+  height: 40vh;
 }
 @media (max-width: 760px) {
   .site-header__mobile-menu {
@@ -124,7 +125,7 @@ Mixins pour le responsive du site
   }
 }
 .site-header__mobile-menu ul {
-  margin-top: 5vh;
+  margin-top: 10vh;
   margin-bottom: 5vh;
   list-style-type: none;
   display: flex;
@@ -160,8 +161,9 @@ Mixins pour le responsive du site
 }
 @media (max-width: 760px) {
   .hero-header {
-    height: 50vh;
+    height: 40vh;
     max-width: 100vw;
+    margin-bottom: 5vh;
   }
 }
 .hero-header__content {
@@ -182,12 +184,24 @@ Mixins pour le responsive du site
     font-size: 18px;
   }
 }
+@media (min-width: 768px) and (max-width: 1250px) {
+  .hero-header__content h1 {
+    font-size: 40px;
+  }
+}
 
 @media (max-width: 760px) {
   .gap-filter {
     display: flex;
     flex-direction: column;
     gap: 5vh;
+  }
+}
+@media (min-width: 768px) and (max-width: 1250px) {
+  .gap-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
   }
 }
 
@@ -223,6 +237,11 @@ Mixins pour le responsive du site
   max-width: 70vw;
   margin: auto;
 }
+@media (max-width: 760px) {
+  .grid-photo {
+    max-width: 90vw;
+  }
+}
 .grid-photo .related-photos {
   display: flex;
   flex-wrap: wrap;
@@ -235,6 +254,7 @@ Mixins pour le responsive du site
     align-items: center;
     text-align: center;
     justify-content: center;
+    width: 100vw;
   }
 }
 .grid-photo .related-photos__thumbnail {
@@ -283,7 +303,7 @@ Mixins pour le responsive du site
   flex-direction: row;
   justify-content: space-between;
   max-width: 80vw;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   margin-top: 25px;
   overflow: hidden;
   font-size: 14px;
@@ -335,7 +355,7 @@ Mixins pour le responsive du site
   max-width: 80vw;
   height: 15vh;
   margin: auto;
-  padding: 0;
+  padding-bottom: 5vh;
   margin-bottom: 2vh;
   border-bottom: 1px solid black;
 }
@@ -348,7 +368,9 @@ Mixins pour le responsive du site
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin: auto;
+  height: 100%;
 }
 @media (max-width: 760px) {
   .contact__button {
@@ -391,57 +413,38 @@ Mixins pour le responsive du site
     width: 80%;
   }
 }
-.contact__button .photo-navigation {
-  position: relative;
+.contact__button .mini-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  height: 80%;
+}
+.contact__button .mini-box__thumbnail img {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.contact__button .mini-box__navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 20%;
-  height: 12vh;
-  border: 1px solid black;
-  /*.next-link {
-      &:hover ~ .next_thumbnail {
-          display: block;
-      }
-  }*/
+  width: 80px;
+  height: 20%;
+  margin-top: 2vh;
 }
-@media (max-width: 760px) {
-  .contact__button .photo-navigation {
-    display: none;
-  }
-}
-.contact__button .photo-navigation .thumbnail {
-  display: none;
-  position: absolute;
-  bottom: 30px;
-  width: 100%; /* Ajustez la taille selon vos besoins */
-  height: auto;
-  border: 1px solid #ddd;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
-.contact__button .photo-navigation .previous_thumbnail {
-  display: none;
-}
-.contact__button .photo-navigation .next_thumbnail {
-  display: none;
-}
-.contact__button .photo-navigation .previous-link {
-  width: 50vw;
-}
-.contact__button .photo-navigation .previous-link:hover .thumbnail {
-  display: block;
-}
-.contact__button .photo-navigation .next-link {
-  width: 50vw;
-}
-.contact__button .photo-navigation .next-link:hover .thumbnail {
-  display: block;
+.contact__button .mini-box__navigation .nav-button {
+  border: none;
+  padding: 5px 10px;
+  font-size: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
 }
 
 h2 {
   margin: auto;
+  margin-top: 5vh;
   max-width: 80vw;
   font-size: 18px;
   font-weight: 400;
@@ -467,7 +470,7 @@ h2 {
 @media (max-width: 760px) {
   .related-photos {
     flex-direction: column;
-    width: 100%;
+    max-width: 100%;
     margin-top: 5vh;
     align-items: center;
     text-align: center;
@@ -498,7 +501,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour mieux voir les icônes */
+  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
   opacity: 0;
   transition: opacity 0.3s ease;
   width: 100%;
@@ -593,8 +596,13 @@ h2 {
 }
 @media (max-width: 760px) {
   .modal__content {
-    max-width: 80vw;
+    max-width: 90vw;
     max-height: 80vh;
+  }
+}
+@media (min-width: 768px) and (max-width: 1250px) {
+  .modal__content {
+    max-width: 90vw;
   }
 }
 .modal__content .close {
@@ -621,6 +629,11 @@ h2 {
   .modal__content img {
     width: 100%;
     height: 10vh;
+  }
+}
+@media (min-width: 768px) and (max-width: 1250px) {
+  .modal__content img {
+    width: 100%;
   }
 }
 .modal__content .wpcf7 {

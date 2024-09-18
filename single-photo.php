@@ -50,27 +50,32 @@ if (have_posts()) :
             <div class="contact__button">
                 <p> Cette photo vous intéresse? </p>
                 <button id="contact-button">Contact</button>
+
+                <div class="mini-box">
+                <!-- Conteneur pour la prévisualisation des miniatures -->
+                    <div class="mini-box__thumbnail">
+                        <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'thumbnail'); ?>" alt="Miniature actuelle" id="mini-thumbnail-img">
+                    </div>
+                    <div class="mini-box__navigation">
+                        <?php 
+                        // Récupération des miniatures des posts précédents et suivants
+                        $prev_post = get_previous_post();
+                        $next_post = get_next_post();
+                        ?>
+                        <?php if (!empty($prev_post)) : ?>
+                        <a class="nav-button prev-button" data-thumbnail="<?php echo get_the_post_thumbnail_url($prev_post->ID, 'thumbnail'); ?>">
+                            &#10229;
+                        </a>
+                        <?php endif; ?>
             
-                <div class="photo-navigation">
-                <?php 
-            // Récupération des miniatures des posts précédents et suivants
-            $prev_post = get_previous_post();
-            $next_post = get_next_post();
-            ?>
-            <?php if (!empty($prev_post)) : ?>
-                <a href="<?php echo get_permalink($prev_post->ID); ?>" class="previous-link">
-                    <?php previous_post_link('%link', '&#10229;'); ?>
-                    <?php echo get_the_post_thumbnail($prev_post->ID, 'thumbnail', ['class' => 'thumbnail previous_thumbnail', 'id' => 'previous-thumbnail']); ?>
-                </a>
-            <?php endif; ?>
-            
-            <?php if (!empty($next_post)) : ?>
-                <a href="<?php echo get_permalink($next_post->ID); ?>" class="next-link">
-                    <?php next_post_link('%link', '&#10230'); ?>
-                    <?php echo get_the_post_thumbnail($next_post->ID, 'thumbnail', ['class' => 'thumbnail next_thumbnail', 'id' => 'next-thumbnail']); ?>
-                </a>
-            <?php endif; ?>
-                </div>       
+                        <?php if (!empty($next_post)) : ?>
+                        <a class="nav-button next-button" data-thumbnail="<?php echo get_the_post_thumbnail_url($next_post->ID, 'thumbnail'); ?>">
+                            &#10230;
+                        </a>
+                        <?php endif; ?>
+                    </div> 
+                </div>
+                     
             </div>
       </div> 
 
