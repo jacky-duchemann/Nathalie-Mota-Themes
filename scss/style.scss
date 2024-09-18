@@ -407,6 +407,9 @@ $second-font: 'Poppins', sans-serif;
                     align-items: center;
                     width: 80px;
                     height: 80%;
+                    @include respond_to_mobile {
+                        display: none;
+                    }
                         &__thumbnail {
                             img {
                                 width: 100%;
@@ -425,6 +428,7 @@ $second-font: 'Poppins', sans-serif;
                                     border: none;
                                     padding: 5px 10px;
                                     font-size: 10px;
+                                    text-decoration: none;
                                     cursor: pointer;
                                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                                     transition: background-color 0.3s;

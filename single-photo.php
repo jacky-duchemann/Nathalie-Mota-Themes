@@ -63,13 +63,13 @@ if (have_posts()) :
                         $next_post = get_next_post();
                         ?>
                         <?php if (!empty($prev_post)) : ?>
-                        <a class="nav-button prev-button" data-thumbnail="<?php echo get_the_post_thumbnail_url($prev_post->ID, 'thumbnail'); ?>">
+                        <a href="<?php echo get_permalink($prev_post->ID); ?>" class="nav-button prev-button" data-thumbnail="<?php echo get_the_post_thumbnail_url($prev_post->ID, 'thumbnail'); ?>">
                             &#10229;
                         </a>
                         <?php endif; ?>
             
                         <?php if (!empty($next_post)) : ?>
-                        <a class="nav-button next-button" data-thumbnail="<?php echo get_the_post_thumbnail_url($next_post->ID, 'thumbnail'); ?>">
+                        <a href="<?php echo get_permalink($next_post->ID); ?>" class="nav-button next-button" data-thumbnail="<?php echo get_the_post_thumbnail_url($next_post->ID, 'thumbnail'); ?>">
                             &#10230;
                         </a>
                         <?php endif; ?>

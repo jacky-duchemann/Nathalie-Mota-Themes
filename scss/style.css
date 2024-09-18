@@ -420,6 +420,11 @@ Mixins pour le responsive du site
   width: 80px;
   height: 80%;
 }
+@media (max-width: 760px) {
+  .contact__button .mini-box {
+    display: none;
+  }
+}
 .contact__button .mini-box__thumbnail img {
   width: 100%;
   height: auto;
@@ -437,6 +442,7 @@ Mixins pour le responsive du site
   border: none;
   padding: 5px 10px;
   font-size: 10px;
+  text-decoration: none;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s;
