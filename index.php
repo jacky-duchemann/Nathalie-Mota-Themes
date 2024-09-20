@@ -8,16 +8,16 @@ include get_template_directory() . '/templates_parts/random-image.php';
 // Obtenir une image aléatoire
 $hero_image = get_random_hero_image();
 ?>
-<header class="hero-header" style="background-image: url('<?php echo esc_url($hero_image); ?>');">
+<header class="hero-header fade-in" style="background-image: url('<?php echo esc_url($hero_image); ?>');">
     <div class="hero-header__content">
         <h1><i>PHOTOGRAPHE EVENT</i></h1>
     </div>
 </header>
 
-<form id="photo-filters" class="filters">
+<form id="photo-filters" class="filters fade-in">
     <div class="gap-filter">
     <select id="categorie-filter" class="filters__formats filters__all" name="categorie">
-        <option value="" disabled selected hidden>CATÉGORIES</options>
+        <option value="">CATÉGORIES</options>
         <?php
         $categories = get_terms(array('taxonomy' => 'categorie'));
         foreach ($categories as $category) {
@@ -45,7 +45,7 @@ $hero_image = get_random_hero_image();
     </select>
 </form>
 
-<div class="grid-photo">
+<div class="grid-photo fade-in">
 <?php // wp_query initiale
 $related_args = array(
     'post_type'      => 'photo',

@@ -129,3 +129,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const elements = document.querySelectorAll('.fade-in');
+
+    elements.forEach((element) => {
+        element.classList.add('visible'); // Ajoute la classe visible
+    });
+});

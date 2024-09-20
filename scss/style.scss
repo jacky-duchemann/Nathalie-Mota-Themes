@@ -50,19 +50,23 @@ $second-font: 'Poppins', sans-serif;
     }
 }
 
-@keyframes fade-out-menu {
-    from {
-        opacity:1;
-        tansform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-100px); // le menu arrive par le haut
-    }
+// fade-in au chargement du site
+.fade-in {
+    opacity: 0; /* Commence totalement transparent */
+    transition: opacity 1.3s ease-in-out; /* Transition douce */
+     &.visible {
+        opacity: 1; /* Rendre visible */
+     }
 }
+
+
 
 * {
     font-family: $theme-font;
+}
+
+h1 {
+    text-transform: uppercase;
 }
 
 .site-header {
@@ -139,7 +143,7 @@ $second-font: 'Poppins', sans-serif;
                 display: none;
             }
                 ul {
-                    margin-top: 10vh;
+                    margin-top: 5vh;
                     margin-bottom: 5vh;
                     list-style-type: none;
                     display: flex;
@@ -148,6 +152,7 @@ $second-font: 'Poppins', sans-serif;
                     text-align: center;
                     justify-content: center;
                     line-height: 65px;
+                    padding-inline-start: 0; // enlever le padding par defaut des ul
                         li {
                             a {
                                 text-decoration: none;
@@ -159,10 +164,6 @@ $second-font: 'Poppins', sans-serif;
                 &.show {
                     display: block;
                     animation: fade-in-menu 1s ease-in-out forwards;
-                }
-                &.hide {
-                    animation: fade-out-menu 1s ease-in-out forwards;
-                    display: none; /* Assure que le menu est caché après l'animation */
                 }
         }
 }
@@ -195,6 +196,7 @@ $second-font: 'Poppins', sans-serif;
                     opacity: 50%;
                     @include respond_to_mobile {
                         font-size: 18px;
+                        -webkit-text-stroke: 2px white; 
                     }
                     @include respond_to_tablet {
                         font-size: 40px;
@@ -235,6 +237,7 @@ $second-font: 'Poppins', sans-serif;
             font-weight: 500;
             font-size: 12px; 
                 option {
+                    font-family: $second-font;
                     &:checked {
                         background-color: red !important;
                         color: white !important; 
@@ -253,7 +256,6 @@ $second-font: 'Poppins', sans-serif;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: center;
             @include respond_to_mobile {
                 flex-direction: column;
                 align-items: center;
@@ -262,9 +264,10 @@ $second-font: 'Poppins', sans-serif;
                 width: 100vw;
             }
                 &__thumbnail {
-                    //flex: 1 1 calc(50% - 20px); /* Deux colonnes avec un écart de 20px */
-                    flex: 1 0 40%;
-                    width: 100%;
+                    width: calc(50% - 10px); /* Utiliser la moitié de l'espace disponible, moins l'écart */
+                    @include respond_to_mobile {
+                        width: 90%;
+                    }
                 }
             }
 }
@@ -330,6 +333,7 @@ $second-font: 'Poppins', sans-serif;
             width: 50%;
             height: 100%;
             border-bottom: 1px solid black;
+            text-transform: uppercase;
             @include respond_to_mobile {
                 border: none;
                 width: 80%;
@@ -494,6 +498,7 @@ h2 {
                     transition: opacity 0.3s ease;
                     width: 100%; 
                     height: 100%; 
+                    text-transform: uppercase;
                     @include respond_to_mobile {
                         display: none;
                     }
@@ -731,6 +736,7 @@ h2 {
                         flex-direction: row;
                         color: white;
                         gap: 40vw;
+                        text-transform: uppercase;
                     }
             }
             &__close {
