@@ -39,8 +39,8 @@ $hero_image = get_random_hero_image();
 
     <select id="sort-order" class="filters__orderby filters__all" name="order">
         <option value="ASC" disabled selected hidden>TRIER PAR</option> 
-        <option value="DESC"> + RÉCENTES </option>
-        <option value="ASC"> - RÉCENTES </option>
+        <option value="DESC"> Photos les plus récentes</option>
+        <option value="ASC"> Photos les plus anciennes </option>
         
     </select>
 </form>

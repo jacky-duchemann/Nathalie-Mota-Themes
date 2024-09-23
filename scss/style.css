@@ -38,6 +38,12 @@ Mixins pour le responsive du site
   opacity: 1; /* Rendre visible */
 }
 
+@keyframes fadeInTitle {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 * {
   font-family: "SpaceMono", sans-serif;
 }
@@ -52,6 +58,11 @@ h1 {
   justify-content: space-between;
   max-width: 80vw;
   margin: auto;
+}
+.site-header__logo {
+  opacity: 0;
+  transform: translateY(100px);
+  animation: fadeInTitle 1.5s ease-in-out forwards;
 }
 @media (max-width: 760px) {
   .site-header__logo {
@@ -86,6 +97,11 @@ h1 {
   font-size: 30px;
   padding: none;
   font-family: "Poppins", sans-serif;
+}
+.site-header__navigation {
+  opacity: 0;
+  transform: translateY(150px);
+  animation: fadeInTitle 1s ease-out forwards;
 }
 @media (max-width: 760px) {
   .site-header__navigation {
@@ -136,7 +152,7 @@ h1 {
   text-align: center;
   justify-content: center;
   line-height: 65px;
-  padding-inline-start: 0;
+  padding-inline-start: 2;
 }
 .site-header__mobile-menu ul li a {
   text-decoration: none;
@@ -145,7 +161,7 @@ h1 {
 }
 .site-header__mobile-menu.show {
   display: block;
-  animation: fade-in-menu 1s ease-in-out forwards;
+  animation: fade-in-menu 1.3s ease-in-out forwards;
 }
 
 .hero-header {
@@ -177,6 +193,9 @@ h1 {
   color: transparent;
   -webkit-text-stroke: 1px white;
   opacity: 50%;
+  opacity: 0;
+  transform: translateY(200px);
+  animation: fadeInTitle 2s ease forwards;
 }
 @media (max-width: 760px) {
   .hero-header__content h1 {
@@ -230,6 +249,7 @@ h1 {
 }
 .filters__all option {
   font-family: "Poppins", sans-serif;
+  font-weight: 700;
 }
 .filters__all option:checked {
   background-color: red !important;

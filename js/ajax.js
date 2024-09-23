@@ -6,9 +6,9 @@ jQuery(document).ready(function($) {
         var format = $('#format-filter').val();
         var order = $('#sort-order').val();
 
-        console.log('Filtre Catégorie:', category);  // Vérifie la valeur
-        console.log('Filtre Format:', format);        // Vérifie la valeur
-        console.log('Ordre:', order);                 // Vérifie la valeur
+        console.log('Filtre Catégorie:', category);  
+        console.log('Filtre Format:', format);        
+        console.log('Ordre:', order);                 
 
         $.ajax({
             url: customAjax.ajaxurl,

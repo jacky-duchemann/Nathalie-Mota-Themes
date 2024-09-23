@@ -59,6 +59,13 @@ $second-font: 'Poppins', sans-serif;
      }
 }
 
+@keyframes fadeInTitle {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 
 
 * {
@@ -76,6 +83,9 @@ h1 {
     max-width: 80vw;
     margin: auto;
         &__logo {
+            opacity: 0;
+            transform: translateY(100px);
+            animation: fadeInTitle 1.5s ease-in-out forwards;
             @include respond_to_mobile {
                 flex-grow: 1;
             }
@@ -107,6 +117,9 @@ h1 {
                 }
         }
         &__navigation {
+            opacity: 0;
+            transform: translateY(150px);
+            animation: fadeInTitle 1s ease-out forwards;
             @include respond_to_mobile {
                 display: none;
             }
@@ -152,7 +165,7 @@ h1 {
                     text-align: center;
                     justify-content: center;
                     line-height: 65px;
-                    padding-inline-start: 0; // enlever le padding par defaut des ul
+                    padding-inline-start: 2; 
                         li {
                             a {
                                 text-decoration: none;
@@ -163,7 +176,7 @@ h1 {
                 }
                 &.show {
                     display: block;
-                    animation: fade-in-menu 1s ease-in-out forwards;
+                    animation: fade-in-menu 1.3s ease-in-out forwards;
                 }
         }
 }
@@ -194,6 +207,9 @@ h1 {
                     color: transparent;
                     -webkit-text-stroke: 1px white; // couleur et epaisseur du contour des lettres
                     opacity: 50%;
+                    opacity: 0;
+                    transform: translateY(200px);
+                    animation: fadeInTitle 2s ease forwards;
                     @include respond_to_mobile {
                         font-size: 18px;
                         -webkit-text-stroke: 2px white; 
@@ -238,6 +254,7 @@ h1 {
             font-size: 12px; 
                 option {
                     font-family: $second-font;
+                    font-weight: 700;
                     &:checked {
                         background-color: red !important;
                         color: white !important; 
