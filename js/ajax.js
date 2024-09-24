@@ -35,7 +35,6 @@ jQuery(document).ready(function($) {
     }
 
     $('#load-more').on('click', function() {
-        console.log("Charger plus fonctionnel ! !");
         page++;
         loadMorePhotos();
     });
@@ -43,9 +42,6 @@ jQuery(document).ready(function($) {
     $('#photo-filters select').on('change', function() {
         page = 1; 
         $('.grid-photo').html(''); 
-        console.log('Category:', $('#categorie-filter').val());
-        console.log('Format:', $('#format-filter').val());
-        console.log('Order:', $('#sort-order').val());
         loadMorePhotos(); 
     });
 });

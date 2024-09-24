@@ -13,13 +13,11 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('refPhoto').value = photoReference;
         console.log(photoReference);
         modal.style.display = "block";
-        console.log("Bouton contatc cliqué");
     });
 
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
-            console.log("La modale se ferme autrement !");
         }
     }
     /*close.addEventListener('click', function() {
@@ -37,13 +35,11 @@ document.addEventListener("DOMContentLoaded", function() {
     contactMenu.addEventListener('click', function(event) {
         event.preventDefault(); // empêche le comportement par defaut du lien
         modal.style.display = "block";
-        console.log("Contact du menu cliqué !");
     })
 
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
-            console.log("La modale se ferme autrement !");
         }
     }
 
@@ -117,14 +113,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // Ajouter un event listener au lien sélectionné
     targetLink.addEventListener("click", function(event) {
         event.preventDefault(); // Empêche le comportement par défaut
-        console.log("Mobile Menu contact cliqué !");
         modal.style.display = "block";
     });
 
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
-            console.log("La modale se ferme autrement !");
         }
     }
 });
